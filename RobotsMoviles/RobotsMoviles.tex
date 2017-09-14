@@ -1,0 +1,176 @@
+\documentclass[11pt,fleqn,x11names,table]{book}                                                  
+% Dimensiones y m�rgenes=1 pulgada alrededor del texto
+
+     
+\usepackage[margin=1in]{geometry}
+\usepackage[mathscr]{euscript}
+%----------------------------------------------------------------------
+\input{EstiloRobotsMoviles}% = Paquetes y c�digo de dise�o
+%----------------------------------------------------------------------
+
+\geometry{bindingoffset=2cm}
+\geometry{textwidth = 125.652mm,textheight = 170mm}
+
+%-----------------------------------------------------------------------
+% COMANDOS PERSONALES
+%-----------------------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\raya}{\rule{2cm}{0.01cm}\\}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\sen}{\mathop{\rm sen}\nolimits}
+\newcommand{\senh}{\mathop{\rm senh}\nolimits}
+\newcommand{\arcsen}{\mathop{\rm arcsen}\nolimits}
+\newcommand{\arcsec}{\mathop{\rm arcsec}\nolimits}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\lenginf}{{\mathscr{L}_{\scriptscriptstyle \kappa \, \scriptscriptstyle \lambda}}}
+\newcommand{\leninf}[2]{\mathscr{L}_{\scriptscriptstyle #1 \, \scriptscriptstyle #2}}
+\newcommand{\pot}{\mathscr{P}}
+\newcommand{\indpeq}{\scriptscriptstyle}
+\newcommand{\sii}{si y solo si }
+\newcommand{\no}{\neg}
+\newcommand{\oinf}{\bigvee}
+\newcommand{\yinf}{\bigwedge}
+\newcommand{\ent}{\rightarrow}
+\newcommand{\syss}{\leftrightarrow}
+\newcommand{\subcuant}[2]{\underset{\scriptscriptstyle #1 < \scriptscriptstyle #2}}
+\newcommand{\term}[2]{\textbf{\textit{Exp}}_{#1 \, #2}}
+\newcommand{\form}[2]{\textit{\textbf{Form}}_{#1 \, #2}}
+\newcommand{\atom}[2]{\textit{\textbf{Atom}}_{#1 \, #2}}
+\newcommand{\enu}[2]{{\large ${\mathscr{L}_{\scriptscriptstyle #1 \, \scriptscriptstyle #2}^{\scriptscriptstyle 0}}$}}
+\newcommand{\arbol}{\textit{\'arbol}}
+
+
+%----------- Comandos del otro documento ------------------
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\DeclareMathOperator{\atantwo}{atan2}
+\renewcommand{\tablename}{Tabla}
+
+
+
+%----------------------------------------------------------
+
+
+
+
+
+\begin{document}
+
+\frontmatter
+	
+%-----------------------------------------------------------------------------------
+%                                  PORTADA
+%-----------------------------------------------------------------------------------
+
+%\parindent=0mm    % Sangr�a
+%\pagestyle{empty}
+%\titulo{% T�tulo 
+%           \fntb[ppl][14]{T�TULO, YO}
+%        }{% Autor
+%          \fntb[ppl][12]{DocDoc}
+6%       }{% Adicional
+%       \fntb[ppl][10]{Agosto, 2017.}}
+
+%-----------------------------------------------------------------------------------  
+  
+  
+% %---------------------------------------------------------------------------------
+% %	                          Tabla de contenidos
+% %---------------------------------------------------------------------------------
+ 
+\tableofcontents
+\thispagestyle{empty}
+
+%-----------------------------------------------------------------------------------
+
+
+% %---------------------------------------------------------------------------------
+% %                           Prefacio o Pr�logo  
+% %---------------------------------------------------------------------------------
+%\begin{prologo}
+% Bueno, aqu� viene el pr�logo de este libro...\\\\
+%\textit{M\'exico, D.F., 2017.} \hfill{\sc Nombre}
+%\end{prologo}
+\mainmatter
+%-----------------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------------
+%                                 Inicio
+%-----------------------------------------------------------------------------------
+\cleardoublepage
+\pagestyle{fancy}                      % Habilitar encabezados
+\pagenumbering{arabic}                 % Numeraci�n arabiga
+\ansj=1                                % Cap 1 inicializa listas 
+%-----------------------------------------------------------------------
+
+
+
+
+%------------------------------------------------------------------------------------
+%	Cap�tulo 1
+%------------------------------------------------------------------------------------
+\input{Capitulo1}
+%-----------------------------------------------------------------------
+% Cap�tulo 2
+%-----------------------------------------------------------------------
+%\input{Capitulo2}
+%-----------------------------------------------------------------------
+% Cap�tulo 3
+%-----------------------------------------------------------------------
+%\input{Capitulo3}
+%-----------------------------------------------------------------------
+% Cap�tulo 4
+%-----------------------------------------------------------------------
+%\input{Capitulo4}
+%-----------------------------------------------------------------------
+% Cap�tulo 5
+%-----------------------------------------------------------------------
+%\input{Capitulo5}
+%-----------------------------------------------------------------------
+% Cap�tulo 6
+%-----------------------------------------------------------------------
+\input{Capitulo6}
+%-----------------------------------------------------------------------
+% Cap�tulo 7
+%-----------------------------------------------------------------------
+%\input{Capitulo7}
+%-----------------------------------------------------------------------
+% Cap�tulo 8
+%-----------------------------------------------------------------------
+%\input{Capitulo8}
+%-----------------------------------------------------------------------
+% Cap�tulo 9
+%-----------------------------------------------------------------------
+%\input{Capitulo9}
+%-----------------------------------------------------------------------
+% Cap�tulo 7
+%-----------------------------------------------------------------------
+%\input{Capitulo6}
+%-----------------------------------------------------------------------
+% Cap�tulo 7
+%-----------------------------------------------------------------------
+
+%-----------------------------------------------------------------------
+% Cap�tulo 6
+%-----------------------------------------------------------------------
+
+%\appendix
+%\input{Arboles}
+%\input{Filtros}
+
+\nocite{*}
+\bibliographystyle{abbrv}
+\bibliography{bibliografia.bib}
+
+\end{document}
+
+
+
+

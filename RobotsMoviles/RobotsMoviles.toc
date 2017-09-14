@@ -1,0 +1,50 @@
+\select@language {spanish}
+\contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n y Generalidades}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Introducci\IeC {\'o}n}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Modelos Tradicionales}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}Modelos Reactivos}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}Modelos H\IeC {\'\i }bridos}{3}{section.1.4}
+\contentsline {section}{\numberline {1.5}Comportamientos Reactivos}{3}{section.1.5}
+\contentsline {section}{\numberline {1.6}Campos Potenciales}{3}{section.1.6}
+\contentsline {section}{\numberline {1.7}Campos Potenciales Atractivos}{4}{section.1.7}
+\contentsline {section}{\numberline {1.8}Campos Potenciales Repulsivos}{4}{section.1.8}
+\contentsline {section}{\numberline {1.9}Campos Potenciales Usando Sensores de Proximidad}{6}{section.1.9}
+\contentsline {section}{\numberline {1.10}Trayectorias}{8}{section.1.10}
+\contentsline {section}{\numberline {1.11}Repaso Transformada de Laplace}{10}{section.1.11}
+\contentsline {section}{\numberline {1.12}Transformada Inversa}{10}{section.1.12}
+\contentsline {section}{\numberline {1.13}Fracciones Parciales}{11}{section.1.13}
+\contentsline {section}{\numberline {1.14}Polos Rales M\IeC {\'u}ltiples}{12}{section.1.14}
+\contentsline {section}{\numberline {1.15}Polos Complejos Conjugados}{13}{section.1.15}
+\contentsline {section}{\numberline {1.16}Motores de Corriente Directa}{14}{section.1.16}
+\contentsline {section}{\numberline {1.17}Transformada Z}{16}{section.1.17}
+\contentsline {section}{\numberline {1.18}Ecuaci\IeC {\'o}n en Diferencias}{17}{section.1.18}
+\contentsline {section}{\numberline {1.19}Repaso Matem\IeC {\'a}tica Discreta}{18}{section.1.19}
+\contentsline {section}{\numberline {1.20}Movimiento en las llantas}{20}{section.1.20}
+\contentsline {section}{\numberline {1.21}Movimiento Lineal de Robot}{21}{section.1.21}
+\contentsline {section}{\numberline {1.22}Movimiento Rotacional del Robot}{21}{section.1.22}
+\contentsline {section}{\numberline {1.23}Movimiento del Robot}{22}{section.1.23}
+\contentsline {chapter}{\numberline {2}Robots M\IeC {\'o}viles y Agentes Inteligentes}{23}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introducci\IeC {\'o}n}{23}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Primitivas de la rob\IeC {\'o}tica}{23}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Componentes b\IeC {\'a}sicos de un robot m\IeC {\'o}vil}{24}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Paradigmas de la rob\IeC {\'o}tica}{24}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}El problema de la planeaci\IeC {\'o}n de movimientos}{25}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Tareas en la planeaci\IeC {\'o}n de movimientos}{25}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Caracter\IeC {\'\i }sticas del robot}{25}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Caracter\IeC {\'\i }sticas de los algoritmos}{26}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Planeaci\IeC {\'o}n de rutas}{26}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Celdas de ocupaci\IeC {\'o}n}{26}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}El algoritmo A*}{27}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Suavizado por descenso del gradiente}{27}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Modelo cinem\IeC {\'a}tico y control de posici\IeC {\'o}n}{29}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Modelo en variables de estado}{29}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Estabilidad de sistemas no lineales}{29}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Leyes de control}{31}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Campos potenciales artificiales}{32}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Dise\IeC {\~n}o mediante campos atractivos y repulsivos}{33}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Movimiento por descenso del gradiente}{34}{subsection.2.5.2}
+\contentsline {section}{\numberline {2.6}Localizaci\IeC {\'o}n}{34}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}El Filtro de Kalman Extendido}{34}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}M\IeC {\'e}todo del histograma}{35}{subsection.2.6.2}
+\contentsline {section}{\numberline {2.7}La plataforma ROS}{37}{section.2.7}
+\contentsfinish 

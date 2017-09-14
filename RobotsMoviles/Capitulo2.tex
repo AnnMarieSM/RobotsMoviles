@@ -1,0 +1,124 @@
+\chapter{Campos Potenciales}
+\section{Campos Potenciales Atractivos}
+\section{Campos Potenciales Repulsivos}
+\section{Campos Potenciales Usando Sensores de Proximidad}
+\subsection{Trayectorias}
+\begin{definicion}
+
+	Un \textit{árbol} es un conjunto parcialmente ordenado, $\left\langle T,\, \leq_{_T} \right\rangle$, tal que $\forall \, x\in T$, el conjunto $x_{\scriptscriptstyle <} = \left\lbrace y\in T \mid y <_{_T} x \right\rbrace$ es bien ordenado por $\leq_{_T}$. \\
+	
+	A los elementos de $T$ se les llaman nodos; y si $T$ tiene elemento mínimo, a este se le llama raíz del árbol.  
+\end{definicion}
+
+Dado un árbol $T$, para cada $x\in T$, $\, x_{\scriptscriptstyle <}$ es isomorfo a un único ordinal, $\textbf{\textit{alt}}(x)$, llamado la altura de $x$. El $\alpha$-ésimo nivel de $T$ es el conjunto: $\textit{\textbf{Niv}}_{\alpha}(T) = \left\lbrace x\in T \mid \textit{\textbf{alt}}(x) = \alpha \right\rbrace$, es decir, el conjunto de los elementos de $T$ que tienen altura $\alpha$.
+
+\begin{definicion}
+	Sea $T$ un \textit{árbol}. 
+	\begin{itemize}
+		\item[1.] Definimos la altura de $T$ como el mínimo ordinal $\alpha$ tal que $\textit{\textbf{Niv}}_{\alpha}(T) = \emptyset$. La altura de $T$ la denotamos por \textit{\textbf{alt}}($T$).
+		
+		\item[2.] Una rama en $T$ es una cadena maximal en $T$; y su longitud es su tipo de orden. Una rama de longitud igual a la altura del árbol es llamada rama cofinal.	
+	\end{itemize}
+\end{definicion}
+
+\begin{definicion}
+	Sea $T$ un \arbol. Un \textit{subárbol} de $T$ es un subconjunto $T'\subseteq T$ junto con el orden restringido a $T'$ tal que $\forall \, x\in T'\: \, \forall \, y\in T \left( y < x \ent y\in T'\right) $. 
+\end{definicion} 
+
+
+\begin{ejemplo}
+	Si $\left\langle A, \leq \right\rangle \in BO$ entonces $A$ es un árbol. Note que \textit{\textbf{alt}}($A$) es el tipo de orden de $A$ y la única rama en $A$ es $A$ mismo, la cual es cofinal.  
+\end{ejemplo} 
+
+\begin{ejemplo}
+	Sea $\lambda$ un ordinal y $A \neq \emptyset$. Definimos $A^{<\lambda} = \displaystyle \bigcup_{\alpha < \lambda} {^\alpha}A$. Así, $A^{<\lambda}$ es el conjunto de sucesiones transfinitas de elementos de $A$ de longitud menor que $\lambda$. Resulta que $\left\langle A^{<\lambda},\, \scriptstyle \subseteq \right\rangle$ es un \arbol. El caso $A = 2$, es conocido como el árbol binario completo de altura $\lambda$
+\end{ejemplo}
+
+\begin{teorema}[(\textit{\textbf{Lema de König}})][lemakonig]
+	Si $T$ es un árbol tal que
+	\begin{itemize}
+		\item[1.] \textit{\textbf{alt}}($T$) = $\omega$ y
+		\item[2.] $\forall \, \alpha, \, |\textit{\textbf{Niv}}_{\alpha}(T)| < \aleph_{\scriptscriptstyle 0}$,
+	\end{itemize}
+	entonces $T$ tiene una rama cofinal. 	
+\end{teorema}
+
+\textbf{Demostración:}\\
+
+Como cada nivel en $T$ es finito y su altura es $\omega$, entonces $|T| = \aleph_{\scriptscriptstyle 0}$. Elegimos $x_{0} \in \textit{\textbf{Niv}}_{0}(T)$ tal que el conjunto $\{ \,y\in T\mid x_{0} \leq y \}$ es infinito; $x_{1} \in \textit{\textbf{Niv}}_{1}(T)$ de manera que $|\left\lbrace z\in T \mid x_{1} \leq z \right\rbrace | = \aleph_{\scriptscriptstyle 0}$. Este proceso lo podemos continuar ya que $T$ es infinito. Así, por recursión, tenemos el conjunto $\{x_{n} \mid n < \omega\}$ y cualquier cadena que extienda a esta es una rama cofinal. \\
+
+\begin{definicion}
+	Sea $\kappa$ un cardinal. Un $\kappa$-\textit{árbol} es un árbol de altura $\kappa$ cuyos niveles tienen cardinalidad menor que $\kappa$.
+\end{definicion}
+
+\begin{definicion}
+	Un $\kappa$-\textit{árbol} de \textit{Aronszajn} es un $\kappa$-árbol que no tiene ramas cofinales. 
+\end{definicion}
+
+\begin{nota}
+	Del lema de König tenemos que no hay $\aleph_{\scriptscriptstyle 0}$-árboles de Aronszajn. Sin embargo sí hay $\aleph_{\scriptscriptstyle 1}$-árboles de Aronszajn.
+\end{nota} 
+
+\begin{definicion}
+	$\kappa$ tiene la propiedad arborescente si todo $\kappa$-árbol tiene una rama cofinal. 
+\end{definicion} 
+
+\begin{nota}
+	De las definiciones se sigue que: $\kappa$ tiene la propiedad arborescente \sii no hay $\kappa$-árboles de Aronszajn.
+\end{nota}
+
+\begin{definicion}
+	Sea $A$ un conjunto. Una partición de $A$ es una familia $\left\lbrace X_{i} \right\rbrace_{i\in I}$ de subconjuntos de $A$ tal que:
+	\begin{itemize}
+		\item[1.] $\forall \, i\in I:\, X_{i} \cap X_{j} = \emptyset$ si $i\neq j$.
+		\item[2.] $A = \displaystyle \bigcup_{i\in I} X_{i}$.
+	\end{itemize}
+\end{definicion}
+
+Note que dada una partición $\left\lbrace X_{i} \right\rbrace_{i\in I}$ de $A$ podemos asignarle la función $F: A \longrightarrow I$ dada por $F(a) = i$ \sii $a\in X_{i}$. Y si $F:A \longrightarrow I$ es una función podemos asignarle la partición $\left\lbrace F^{-1}(\left\lbrace i \right\rbrace ) \right\rbrace_{i\in I}$
+
+\begin{definicion}
+	Sean $A$ un conjunto y $n$ un cardinal. Definimos
+	$$\left[ A\right]^{n} = \left\lbrace x\subseteq A \mid \left| x \right|  = n \right\rbrace $$
+\end{definicion}
+
+\begin{definicion}
+	Sea $\mathscr{F} = \left\lbrace X_{i}\right\rbrace _{i\in I}$ una partición de $\left[ A\right]^{n}$. Un subcojunto $H \subseteq A$ es homogéneo para la partición $\mathscr{F}$ \sii existe $i\in I$ tal que $\left[  H \right]^{n} \subseteq X_{i}$; o bien \sii $\left|  F\left( \left[  H \right]^{n} \right)  \right| = 1$, donde $F$ es la función inducida por la partición.
+\end{definicion}
+
+
+
+
+------------begin----------
+
+
+
+
+\begin{definicion}[(Compacidad débil)]
+$\mathscr{L}_{\kappa \, \kappa}$ satisface compacidad débil si y solo si todo conjunto de enunciados $\Sigma \subseteq \mathscr{L}_{\kappa \, \kappa}$, $|\Sigma| = \kappa$, para el que todo subconjunto $\Gamma \subseteq \Sigma$, con $|\Gamma| < \kappa$, tiene modelo, entonces $\Sigma$ tiene modelo.  
+\end{definicion}	 
+
+\begin{definicion}
+$\kappa$ es débilmente compacto si y solo si
+\begin{itemize}
+	\item[a)] $\kappa > \omega$,
+	\item[b)] $\kappa$ es fuerte y
+	\item[c)] $\mathscr{L}_{\kappa \, \kappa}$ satisface compacidad débil. 
+\end{itemize}
+\end{definicion}
+
+\begin{teorema}
+ Sea $\kappa > \omega$. Son equivalentes:
+ \begin{itemize}
+ 	\item[1.] $\kappa$ es débilmente compacto.
+ 	\item[2.] $\mathscr{L}_{\kappa \, \omega}$ satisface compacidad débil. 
+ 	\item[3.] $\kappa \longrightarrow \displaystyle \left(\kappa\right)_{2}^{2}$.
+ 	\item[4.] $\kappa$ es inaccesible y satisface la propiedad arborescente.
+ 	\item[5.] No existen $\kappa$-árboles de Aronszajn.
+ 	\item[6.] $\kappa \longrightarrow \displaystyle \left(\kappa\right)_{m}^{n}, \, \forall m \in \omega \, \, \forall m < \kappa$.	
+ \end{itemize}	
+\end{teorema}
+
+\begin{teorema}[(Silver)] 
+	Si $\kappa$ es débilmente compacto, entonces $(\kappa \mbox{ es débilmente compacto})^L$.
+\end{teorema}
