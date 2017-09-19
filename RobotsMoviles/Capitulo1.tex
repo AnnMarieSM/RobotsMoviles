@@ -15,44 +15,43 @@ Se tiene representación del medio ambiente
 	\label{figura1}
 \end{figure}
 
+\paragraph{}
 Se planean las acciones y los movimientos del robot.
 
-\begin{floatingfigure}[l]{2.5cm}
-	\includegraphics[width = 2 cm]{images/img2.png}
-	%\captionof{figure}{Un poliedro}
-	\label{figura2}
-\end{floatingfigure}
+\begin{wrapfigure}{l}{45 mm}
+  \begin{center}
+    \includegraphics[width = 2 cm]{images/img2.png}
+  \end{center}
+    
+\end{wrapfigure}
 
 El robot debe llegar de 1 a 6. Dado que el robot conoce el mapa del lugar puede trazar un árbol y encontrar lo mejor ruta (rama de menor peso).
 
-Sin embargo, desconoce los objetos que obstruyen su camino; por lo que no debe descartar las otras ramas.\\
+Sin embargo, desconoce los objetos que obstruyen su camino; por lo que no debe descartar las otras ramas.
 
-
-\begin{figure}[h]
-\begin{floatingfigure}[l]{1cm}
-	\includegraphics[width = 2.5 cm]{images/img3.png}
-	%\captionof{figure}{Un poliedro}
-	\label{figura3}
-\end{floatingfigure}	
-\end{figure}
+\begin{wrapfigure}{l}{45 mm}
+  \begin{center}
+    \includegraphics[width = 3 cm]{images/img3.png}
+  \end{center}
+    
+\end{wrapfigure}
 
 
 Si se conocen objetos obstáculo, se aproximan a polígonos y se almacenan sus vértices. Si uno intersecta el camino de línea recta entre origen y destino, el robot se desplaza a la esquina más cercana y bordea el obstáculo.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/img2.png}
-	%\captionof{figure}{(Objeto mesa (cuarto 1 $x_{_1}y_{_1},x_{_2}y_{_2},...,x_{_n}y_{_n}$))}
-	%\label{figura1}
+	\includegraphics[width=0.35\textwidth]{images/img2.png}
 \end{figure}
 
 Se tiene una organización serial, si un modulo falla... 
 Se tiene un grupo de sensores para detectar el medio ambiente
+\\
+\\
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/img4.png}
-	%\captionof{figure}{(Objeto mesa (cuarto 1 $x_{_1}y_{_1},x_{_2}y_{_2},...,x_{_n}y_{_n}$))}
+	\includegraphics[width=0.55\textwidth]{images/img4.png}
 	\label{figura4}
 \end{figure}
 
@@ -73,9 +72,13 @@ Características:
 	\item[\textbullet] Esta basado en comportamientos funcionando en paralelo.
 \end{itemize}
 
+\newpage
 
-
-%Figura 6
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img5.png}
+	\label{figura6}
+\end{figure}
 
 La salida de cada comportamiento debe ser instantánea a partir del momento que hay una entrada.
 Los comportamientos son independientes entre si.
@@ -89,16 +92,15 @@ Por ejemplo si se tienen un grupo de robots en un campo con discos con la siguie
 
 
 
-
-
-
-
 \section{Modelos Híbridos}
 
 Se combinan las arquitecturas tradicionales y reactivas para suplir las deficiencias de cada una de ellos.
 
-%imagen 
-
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img6.png}
+	\label{figura6}
+\end{figure}
 
 
 
@@ -106,54 +108,96 @@ Se combinan las arquitecturas tradicionales y reactivas para suplir las deficien
 
 Se manejan mediante diagramas estimulo- respuesta o ER
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{images/img7.png}
+	\label{figura7}
+\end{figure}
 
+\paragraph{}
 O bien
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img8.png}
+	\label{figura8}
+\end{figure}
 
+\paragraph{}
 O bien
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img9.png}
+	\label{figura9}
+\end{figure}
+
+
+\paragraph{}
 
 Inteligencia espontánea: los robots hacen algo que no sabrán que estaban haciendo.
 En un robot que tiene varios comportamientos coordinados por un agente, todos los comportamientos deben ofrecer una salida por ciclo de reloj, es decir, un comportamiento debe dar salida inmediata.
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img10.png}
+	\label{figura10}
+\end{figure}
 
+\paragraph{}
 Ronald Brooks propone
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img11.png}
+	\label{figura11}
+\end{figure}
 
+\paragraph{}
 Tenemos entonces:
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\textwidth]{images/img12.png}
+	\label{figura12}
+\end{figure}
 
 
 \section{Campos Potenciales}
 
 El destino se determina por un capo potencial de atracción y los obstáculos como campos potenciales de repulsión.
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img13.png}
+	\label{figura13}
+\end{figure}
+
 % NOTA creo que aquí no es x - 1 sino n - 1
 
-$$x_{n} = f(x_{n + 1}) = x_{x - 1} \, \delta \; \dfrac{dy}{dy}$$
+$$x_{n} = f(x_{n - 1}) = x_{x - 1} \, \delta \; \dfrac{dy}{dy}$$
 
-Por ejemplo para una parábola $y = y_{0} + (x - x_{0})^2$,  $\;\dfrac{dy}{dx} = 2(x - x_{0})$. Si $\delta = \dfrac{1}{2}$ $\Rightarrow$ $x_{n - 1} = -\dfrac{1}{2} (2(x_{n - 1} - x_{0})) = x_{0}$, \textit{llegamos en un paso}.
+Por ejemplo para una parábola \hspace{1cm} $y = y_{0} + (x - x_{0})^2$ 
+\paragraph{}
+$\;\dfrac{dy}{dx} = 2(x - x_{0})$. \hspace{1cm} Si $\delta = \dfrac{1}{2}$ $\Rightarrow$ $x_{n - 1} = -\dfrac{1}{2} (2(x_{n - 1} - x_{0})) = x_{0}$, \textit{llegamos en un paso}.
 
+\paragraph{}
 Esta técnica se conoce como: descendiendo por la pendiente más pronunciada o steppest descent.
 
-$\overline{q}_{n} = [x_n,y_n]$ La posición del robot $\overline{q}_{n} = \overline{q}_{n - 1} - \delta \overline{f} \left( \overline{q}_{n - 1} \right)$. Donde $\overline{f} \left( \overline{q}_{n - 1}\right)$ es un vector fuerzas unitario en la dirección del gradiente $\overline{f}(\overline{q}) = \dfrac{\overline{F(\overline{q})}}{\left| \overline{F}(\overline{q})\right|}$ 
+$\overline{q}_{n} = [x_n,y_n]$ \hspace{0.5cm} la posición del robot \hspace{0.5cm}  $\overline{q}_{n} = \overline{q}_{n - 1} - \delta \overline{f} \left( \overline{q}_{n - 1} \right)$ \hfill \break
+donde $\overline{f} \left( \overline{q}_{n - 1}\right)$ es un vector fuerzas unitario en la dirección del gradiente $\overline{f}(\overline{q}) = \dfrac{\overline{F(\overline{q})}}{\left| \overline{F}(\overline{q})\right|}$ 
+\hfill \break
+donde $\overline{F}(\overline{q}) = \nabla U(\overline{q}) = \left( \dfrac{\partial u}{\partial x} \,\hat{i} + \dfrac{\partial u}{\partial x}\, \hat{j} \right)$ 
 
-Donde $\overline{F}(\overline{q}) = \nabla U(\overline{q}) = \left( \dfrac{\partial u}{\partial x} \,\hat{i} + \dfrac{\partial u}{\partial x}\, \hat{j} \right)$ 
+El gradiente del campo potencial donde  $u(\overline{q}) = U_{\mbox{\textit{atracción}}}(\overline{q}) + U_{\mbox{\textit{repulsión}}}(\overline{q})$
 
-El gradiente del campo potencial donde $u(\overline{q}) = U_{\mbox{\textit{atracción}}}(\overline{q}) + U_{\mbox{\textit{repulsión}}}(\overline{q})$
+Los campos potenciales atractivos y repulsivos y  $\overline{F}(\overline{q}) = \overline{F}_{atr}(\overline{q}) + \overline{F}_{rep}(\overline{q})$ las fuerzas de atracción y repulsión
 
-Los campos potenciales atractivos y repulsivos y $\overline{F}(\overline{q}) = \overline{F}_{atr}(\overline{q}) + \overline{F}_{rep}(\overline{q})$.
-
-Las fuerzas de atracción y repulsión
-
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img14.png}
+	\label{figura14}
+\end{figure}
 
 
 
