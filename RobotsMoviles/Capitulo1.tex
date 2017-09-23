@@ -178,18 +178,19 @@ El destino se determina por un capo potencial de atracción y los obstáculos co
 $$x_{n} = f(x_{n - 1}) = x_{x - 1} \, \delta \; \dfrac{dy}{dy}$$
 
 Por ejemplo para una parábola \hspace{1cm} $y = y_{0} + (x - x_{0})^2$ 
-\paragraph{}
-$\;\dfrac{dy}{dx} = 2(x - x_{0})$. \hspace{1cm} Si $\delta = \dfrac{1}{2}$ $\Rightarrow$ $x_{n - 1} = -\dfrac{1}{2} (2(x_{n - 1} - x_{0})) = x_{0}$, \textit{llegamos en un paso}.
+
+$$\;\dfrac{dy}{dx} = 2(x - x_{0})$$ 
+\hspace{2cm} \textit{si} $\delta = \dfrac{1}{2}$ $\Rightarrow$ $x_{n - 1} = -\dfrac{1}{2} (2(x_{n - 1} - x_{0})) = x_{0}$, \textit{llegamos en un paso}.
 
 \paragraph{}
 Esta técnica se conoce como: descendiendo por la pendiente más pronunciada o steppest descent.
 
-$\overline{q}_{n} = [x_n,y_n]$ \hspace{0.5cm} la posición del robot \hspace{0.5cm}  $\overline{q}_{n} = \overline{q}_{n - 1} - \delta \overline{f} \left( \overline{q}_{n - 1} \right)$ \hfill \break
-donde $\overline{f} \left( \overline{q}_{n - 1}\right)$ es un vector fuerzas unitario en la dirección del gradiente $\overline{f}(\overline{q}) = \dfrac{\overline{F(\overline{q})}}{\left| \overline{F}(\overline{q})\right|}$ 
+\hspace{2cm}$\overline{q}_{n} = [x_n,y_n]$ \hspace{0.5cm} \textit{la posición del robot} \hspace{0.5cm}  $\overline{q}_{n} = \overline{q}_{n - 1} - \delta \overline{f} \left( \overline{q}_{n - 1} \right)$ \hfill \break
+\hspace{1cm} \textit{donde} $\overline{f} \left( \overline{q}_{n - 1}\right)$ \textit{es un vector fuerzas unitario en la dirección del gradiente} $\overline{f}(\overline{q}) = \dfrac{\overline{F(\overline{q})}}{\left| \overline{F}(\overline{q})\right|}$ 
 \hfill \break
-donde $\overline{F}(\overline{q}) = \nabla U(\overline{q}) = \left( \dfrac{\partial u}{\partial x} \,\hat{i} + \dfrac{\partial u}{\partial x}\, \hat{j} \right)$ 
+\textit{donde} $\overline{F}(\overline{q}) = \nabla U(\overline{q}) = \left( \dfrac{\partial u}{\partial x} \,\hat{i} + \dfrac{\partial u}{\partial x}\, \hat{j} \right)$ 
 
-El gradiente del campo potencial donde  $u(\overline{q}) = U_{\mbox{\textit{atracción}}}(\overline{q}) + U_{\mbox{\textit{repulsión}}}(\overline{q})$
+El gradiente del campo potencial \hspace{1cm} \textit{donde}  $u(\overline{q}) = U_{\mbox{\textit{atracción}}}(\overline{q}) + U_{\mbox{\textit{repulsión}}}(\overline{q})$
 
 Los campos potenciales atractivos y repulsivos y  $\overline{F}(\overline{q}) = \overline{F}_{atr}(\overline{q}) + \overline{F}_{rep}(\overline{q})$ las fuerzas de atracción y repulsión
 
@@ -203,56 +204,72 @@ Los campos potenciales atractivos y repulsivos y  $\overline{F}(\overline{q}) = 
 
 \section{Campos Potenciales Atractivos}
 
-$\overline{q} = (x,y)$ Es la posición del robot.
+\begin{center}
 
-$\overline{q}_{dest} \sqcup$ Posicón del punto al que queremos llegar
 
-$\overline{F}_{atr}(\overline{q}) = \epsilon_{1} (\overline{q} - \overline{q}_{dest})$ Siempre que $\left| \overline{q} - \overline{q}_{dest} \right| \leq d_{i}$ Para $\left| \overline{q} - \overline{q}_{dest} \right| > d_{i}$, $U_{atr}(\overline{q}) = \epsilon_{2} \left| \overline{q} - \overline{q}_{dest} \right|$ O bien, 
+$\overline{q} = (x,y)$ \textit{Es la posición del robot}
 
-$$U_{atr}(x,y) = \epsilon_{2} \left( (x - x_{0})^2 + (y - y_{0})^2 \right)^\frac{1}{2}
-$$ 
-$$\dfrac{\partial U_{atr}(x,y)}{\partial x} = \dfrac{\epsilon_{2}2(x - x_{0})}{2\sqrt{(x - x_{d})^2 + (y - y_{d})^2}}
-$$
-$$\dfrac{\partial U_{atr}(x,y)}{\partial y} = \dfrac{\epsilon_{2}(y - y_{0})}{\sqrt{(x - x_{d})^2 + (y - y_{d})^2}}
-$$
-$$\Rightarrow \nabla U_{atr(x,y)} = \dfrac{\epsilon_{2}\left( (x - x_{0}) + (y - y_{d})\right) }{\sqrt{(x - x_{d})^2 + (y - y_{d})^2}} = \dfrac{\epsilon_{2}(\overline{q} - \overline{q}_d)}{\left| \overline{q} - \overline{q}_{d} \right|} = F_{atr}(\overline{q})
-$$
+$\overline{q}_{dest} $ \textit{Posición del punto al que queremos llegar}
 
+$\overline{F}_{atr}(\overline{q}) = \epsilon_{1} (\overline{q} - \overline{q}_{dest})$ \textit{siempre que} $\left| \overline{q} - \overline{q}_{dest} \right| \leq d_{i}$ \textit{para} $\left| \overline{q} - \overline{q}_{dest} \right| > d_{i}$, $U_{atr}(\overline{q}) = \epsilon_{2} \left| \overline{q} - \overline{q}_{dest} \right|$ \textit{o bien,} 
+\end{center}
+
+$$U_{atr}(x,y) = \epsilon_{2} \left( (x - x_{0})^2 + (y - y_{0})^2 \right)^\frac{1}{2}$$
+$$\dfrac{\partial U_{atr}(x,y)}{\partial x} = \dfrac{\epsilon_{2}2(x - x_{0})}{2\sqrt{(x - x_{d})^2 + (y - y_{d})^2}}$$
+$$\dfrac{\partial U_{atr}(x,y)}{\partial y} = \dfrac{\epsilon_{2}(y - y_{0})}{\sqrt{(x - x_{d})^2 + (y - y_{d})^2}}$$
+$$\Rightarrow \nabla U_{atr(x,y)} = \dfrac{\epsilon_{2}\left( (x - x_{0}) + (y - y_{d})\right) }{\sqrt{(x - x_{d})^2 + (y - y_{d})^2}} = \dfrac{\epsilon_{2}(\overline{q} - \overline{q}_d)}{\left| \overline{q} - \overline{q}_{d} \right|} = F_{atr}(\overline{q})$$
 
 
 \section{Campos Potenciales Repulsivos}
-%imagen
 
-$$\left| \overline{q} - \overline{q}_{obs}\right| \leq d_{0}$$ 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/img15.png}
+	\label{figura15}
+\end{figure}
+\newpage
+
+$$\left| \overline{q} - \overline{q}_{obs}\right| \leq d_{0}$$
 
 $$U_{rep}(\overline{q}) = \dfrac{1}{2} \eta \left( \dfrac{1}{\left| \overline{q} - \overline{q}_{obs}\right|}  
 - \dfrac{1}{d_{0}} \right)^2$$
 
-$$U_{rep}(x,y) = \dfrac{1}{2} \eta \left( \dfrac{1}{\sqrt{(x - x_{0})^2 + (y - y_{0})^2}}  
+$$U_{rep}(x,y) = \dfrac{1}{2} \eta \left( \dfrac{1}{\sqrt{(x - x_{obs})^2 + (y - y_{obs})^2}}  
 - \dfrac{1}{d_{0}} \right)^2$$
 
 $$\dfrac{\partial U_{rep}(x,y)}{\partial x} = \eta \left( \dfrac{1}{d_{0}}  
--  \dfrac{1}{\sqrt{(x - x_{0})^2 + (y - y_{0})^2}} \right)^2 \left( \dfrac{x - x_{obs}}{\left( (x - x_{obs})^2 + (y - y_{obs})^2 \right)^{\frac{3}{2}}} \right)$$
+-  \dfrac{1}{\sqrt{(x - x_{obs})^2 + (y - y_{obs})^2}} \right)^2 \left( \dfrac{x - x_{obs}}{\left( (x - x_{obs})^2 + (y - y_{obs})^2 \right)^{\frac{3}{2}}} \right)$$
 
 $$\dfrac{\partial U_{rep}(x,y)}{\partial y} = \eta \left( \dfrac{1}{d_{0}}  
--  \dfrac{1}{\sqrt{(x - x_{0})^2 + (y - y_{0})^2}} \right)^2 \left( \dfrac{y - y_{obs}}{\left( (x - x_{obs})^2 + (y - y_{obs})^2 \right)^{\frac{3}{2}}} \right)$$
+-  \dfrac{1}{\sqrt{(x - x_{obs})^2 + (y - y_{obs})^2}} \right)^2 \left( \dfrac{y - y_{obs}}{\left( (x - x_{obs})^2 + (y - y_{obs})^2 \right)^{\frac{3}{2}}} \right)$$
 
 $$\nabla U_{rep}(\overline{q}) = -\eta \left( \dfrac{1}{\left| \overline{q} - \overline{q}_{obs}\right|} - \dfrac{1}{d_{0}} \right)  \left( \dfrac{1}{\left| \overline{q} - \overline{q}_{obs}\right|^2}\right)  \left( \dfrac{\overline{q} - \overline{q}_{obs}}{\left| \overline{q} - \overline{q}_{obs}\right|}\right) = \overline{F}_{rep}(\overline{q})$$
 
+\paragraph{}
 Fuerza de repulsión del obstáculo $k$
+
+\begin{center}
+$\overline{F}_{rep}(\overline{q}) = 0$ \textit{ si } $\left| \overline{q} - \overline{q}_{obs}\right| > 0$
+\end{center}
 
 $$\overline{F}(\overline{q}) = \overline{F}_{atr}(\overline{q}) + \displaystyle \sum_{i = 1}^{n} \, \overline{F}_{rep}(\overline{q})$$
 
 Luego
+
 $$f(\overline{q}) = \dfrac{\overline{F}(\overline{q})}{\left|  \overline{F}(\overline{q}) \right| }$$
 
-$$\overline{q}_{i = 1} = \overline{q}_{i} - \delta_{i} \overline{f}(q_{i})$$
+
+$$\overline{q}_{i + 1} = \overline{q}_{i} - \delta_{i} \overline{f}(q_{i})$$
 
 Ejemplo:
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/img16.png}
+	\label{figura16}
+\end{figure}
 
-$\overline{q}_{0} = (1,1),\, \overline{q}_{obs} = (2,2),\, \overline{q}_{dest} = (5,4),\, d_{0} = 5,\, \epsilon_{1} = 5, \,\, \eta = 2,\, \delta_{0} = 1,\, \delta_{1} = 10$
+$$\overline{q}_{0} = (1,1),\, \overline{q}_{obs} = (2,2),\, \overline{q}_{dest} = (5,4),\, d_{0} = 5,\, \epsilon_{1} = 5, \,\, \eta = 2,\, \delta_{0} = 1,\, \delta_{1} = 10$$
 
 $$\overline{F}_{atr}(\overline{q}_{0}) = \overline{F}_{atr}(1,1) = \epsilon_{1}(\overline{q}_{0} - \overline{q}_{dest}) = 1((1,1) - (5,4)) = (-4,-3)$$
 
