@@ -286,7 +286,11 @@ Encontrar los siguientes tres puntos de posicionamiento del robot. Obtenga $q_{2
 
 \section{Campos Potenciales Usando Sensores de Proximidad}
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/img17.png}
+	\label{figura17}
+\end{figure}
 
 En el ángulo de determina hacia donde mira el robot respecto a su posición alfa es el ángulo del sensor respecto a la orientación del robot. 
 
@@ -296,19 +300,27 @@ $$x_{obs} = d\cos (\theta + \alpha)$$
 $$y_{obs} = d\sen (\theta + \alpha)$$
 $$\overline{q} - \overline{q}_{obs} = (0,0) - (x_{obs}, y_{obs}) = (-x_{obs}, -y_{obs})$$
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img18.png}
+	\label{figura18}
+\end{figure}
+\newpage
 
 Cuando se conoce la posición de los objetos se puede almacenar en una matriz el campo de repulsión. Esto requiere de un procesador más potente.
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img19.png}
+	\label{figura19}
+\end{figure}
 
 Dados $(x_{i - 1}, y_{i - 1})$ para llegar al punto $(x_{i}, y_{i})$ se desea saber el ángulo que el robot debe girar para llegar a su destino, o bien el desplazamiento.
 
-$$x_{i} = \overline{OA} = x_{i - 1} + r\cos (\theta_{i - 1} = \theta_{i})$$
-$$y_{i} = \overline{AP} = y_{i - 1} + r\sen (\theta_{i - 1} = \theta_{i})$$
-$$x_{i} = x_{i}^{\,\prime} \cos (\theta_{i - 1}) - y_{i}^{\,\prime} \sen (\theta_{i - 1}) + x_{i - 1}$$
-
-$$y_{i} = x_{i}^{\,\prime} \sen (\theta_{i - 1}) - y_{i}^{\,\prime} \cos (\theta_{i - 1}) + y_{i - 1}$$
+$$x_{i} = \overline{OA} = x_{i - 1} + r\cos (\theta_{i - 1} + \theta_{i})$$
+$$y_{i} = \overline{AP} = y_{i - 1} + r\sen (\theta_{i - 1} + \theta_{i})$$
+$$x_{i} = x_{i}^{\,\prime} \cos (\theta_{i - 1}) - y_{i}^{\,\prime} \sen \theta_{i - 1} + x_{i - 1}$$
+$$y_{i} = x_{i}^{\,\prime} \sen (\theta_{i - 1}) - y_{i}^{\,\prime} \cos \theta_{i - 1} + y_{i - 1}$$
 
 Esto para un sistema omnidireccional. En forma matricial:
 
@@ -318,8 +330,8 @@ x_{i} \\
 y_{i} \\
 \theta_{i}
 \end{bmatrix} = \begin{bmatrix}
-\cos (\theta_{i - 1}) & \sen (\theta_{i - 1}) & 0 \\
-\sen (\theta_{i - 1}) & \cos (\theta_{i - 1}) & 0 \\
+\cos \theta_{i - 1} & \sen \theta_{i - 1} & 0 \\
+\sen \theta_{i - 1} & \cos \theta_{i - 1} & 0 \\
 0                     &                0      & 1
 \end{bmatrix} \begin{bmatrix}
 x_{i}^{\,\prime} \\
@@ -340,8 +352,8 @@ x_{i}^{\,\prime} \\
 y_{i}^{\, \prime} \\
 \theta_{i}^{\, \prime}
 \end{bmatrix} = \begin{bmatrix}
-\cos (\theta_{i - 1}) & \sen (\theta_{i - 1}) & 0 \\
-- \sen (\theta_{i - 1}) & \cos (\theta_{i - 1}) & 0 \\
+\cos \theta_{i - 1} & \sen \theta_{i - 1} & 0 \\
+-\sen \theta_{i - 1} & \cos \theta_{i - 1} & 0 \\
 0                     &                0      & 1
 \end{bmatrix} \begin{bmatrix}
 x_{i} - x_{i - 1} \\
@@ -358,8 +370,8 @@ x_{i}^{\,\prime} \\
 y_{i}^{\, \prime} \\
 \theta_{i}^{\, \prime}
 \end{bmatrix} = \begin{bmatrix}
-\cos (\theta_{i}) & \sen (\theta_{i}) & 0 \\
-- \sen (\theta_{i}) & \cos (\theta_{i}) & 0 \\
+\cos \theta_{i} & \sen \theta_{i} & 0 \\
+- \sen \theta_{i} & \cos \theta_{i} & 0 \\
 0                     &                0      & 1
 \end{bmatrix} \begin{bmatrix}
 x_{i} - x_{i - 1} \\
@@ -370,12 +382,15 @@ $$
 
 Ejemplo:
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img20.png}
+	\label{figura20}
+\end{figure}
 
-\textit{tiempo} $t = 1$
+\textit{tiempo} $i = 1$
 
-$$x_{0} = 0,\, y_{0}, \, \theta_{0} = 0$$
-%NOTA> creo que aquí es y_{0} y no x_{1}
+$$x_{0} = 0,\, y_{0} = 0, \, \theta_{0} = 0$$
 $$x_{1} = 1,\, y_{1} = 0, \, \theta_{1} = 0$$
 $$\theta_{i} = \tan^{-1} \left( \dfrac{y_{i} - y_{i - 1}}{x_{i} - x_{i - 1}} \right) $$
 
@@ -383,8 +398,8 @@ Terminar ejercicio.
 
 Caso 1. Robot no omnidireccional
 
-$$x_{1}^{\, \prime} = 1 \cos (0) + 0 \sen (0) = 1$$
-$$y_{1}^{\, \prime} = \sen (0) - \cos (0) = 0$$
+$$x_{1}^{\, \prime} = 1 \cos 0 + 0 \sen 0 = 1$$
+$$y_{1}^{\, \prime} = \sen 0 - 0 \cos 0 = 0$$
 $$\theta_{1}^{\, \prime} = 0$$
 	
 $$i = 2$$
@@ -398,24 +413,25 @@ $$\theta_{2}^{\, \prime} = 45^\circ$$
 $$i = 3$$
 $$x_{2} = 1\ldotp7075,\, y_{2} = 0\ldotp7075,\, \theta_{2} = 45^\circ$$
 $$x_{3} = 2\ldotp7075,\, y_{3} = 0\ldotp7075,\, \theta_{3} = 0$$
-$$x_{3}^{\,\prime} = 1 \cos (0) + 0\sen (0) = 1$$
-$$y_{3}^{\,\prime} = - 1 \sen (0) + 0\cos (0) = 0$$
+$$x_{3}^{\,\prime} = 1 \cos 0 + 0\sen 0 = 1$$
+$$y_{3}^{\,\prime} = - 1 \sen 0 + 0\cos 0 = 0$$
 $$\theta_{3}^{\,\prime} = -45^\circ$$
 
-Caso 2. Robot omnidireccional \\
+Caso 2. Robot omnidireccional 
+
 \textit{tiempo} $i = 1$
 
 $$x_{0} = 0,\, y_{0} = 0,\, \theta_{0} = 0$$
 $$x_{1} = 1,\, y_{1} = 0,\, \theta_{1} = 0$$
-$$x_{1}^{\,\prime} = 1 \cos (0) + 0\sen (0) = 1$$
-$$y_{1}^{\,\prime} = - 1 \sen (0) - 0\cos (0) = 0$$
+$$x_{1}^{\,\prime} = 1 \cos 0 + 0\sen 0 = 1$$
+$$y_{1}^{\,\prime} = - \sen 0 - 0\cos 0 = 0$$
 $$\theta_{1}^{\,\prime} = 0$$
 
 $$i = 2$$
 $$x_{1} = 1, \, y_{1} = 0, \theta_{1} = 0$$
 $$x_{2} = 1\ldotp7075,\, y_{2} = 0\ldotp7075,\, \theta_{2} = 45^\circ$$
-$$x_{2}^{\,\prime} = 0\ldotp7075 \cos (0) + 0\ldotp7075\sen (0) = 0\ldotp7075$$
-$$y_{2}^{\,\prime} = - 0\ldotp7075 \sen (0) + 0\ldotp7075\cos (0) = 0\ldotp7075$$
+$$x_{2}^{\,\prime} = 0\ldotp7075 \cos 0 + 0\ldotp7075\sen 0 = 0\ldotp7075$$
+$$y_{2}^{\,\prime} = - 0\ldotp7075 \sen 0 + 0\ldotp7075\cos 0 = 0\ldotp7075$$
 $$\theta_{2}^{\,\prime} = -45^\circ$$
 
 $$i = 3$$
