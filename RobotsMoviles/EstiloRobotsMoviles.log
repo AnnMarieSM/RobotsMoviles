@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.23)  23 SEP 2017 04:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.8.5)  5 OCT 2017 19:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **EstiloRobotsMoviles.tex
 (./EstiloRobotsMoviles.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
 
 ! LaTeX Error: \usepackage before \documentclass.
 
@@ -4808,10 +4808,10 @@ l.537 \newtcolorbox
                    {wwcoro}[2][]{%
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 202 strings out of 493029
- 2531 string characters out of 6136234
- 60097 words of memory out of 5000000
- 3822 multiletter control sequences out of 15000+600000
+ 202 strings out of 493014
+ 2531 string characters out of 6135691
+ 60227 words of memory out of 5000000
+ 3829 multiletter control sequences out of 15000+600000
  6698 words of font info for 22 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  20i,13n,18p,187b,183s stack positions out of 5000i,500n,10000p,200000b,80000s

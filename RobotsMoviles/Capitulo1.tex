@@ -547,7 +547,7 @@ $$= a_{m}\dfrac{d^m\, x(t)}{dt^{m}} + a_{m -1} \dfrac{d^{m - 1}\, x(t)}{dt^{m - 
 Usando la transformada de \textit{Laplace} para resolver la ecuación diferencial 
 (condiciones iniciales nulas).
 
-%NOTA a esta ecuación creo que le falta b_n al inicio de la suma
+
 $$s^{n}Y(s) + b_{n - 1}s^{n - 1}Y(s) + \ldots + b_{1}sY(s) + b_{0}Y(s) = $$
 $$a_{m}s^{m}X(s) + a_{m - 1}s^{m - 1}X(s) + \ldots + a_{1}sX(s) + a_{0}X(s)$$
 
@@ -747,6 +747,8 @@ Implementar $A_{_12}te^{-t} + A_{_{11}}e^{-t} + A_{_{2}}e^{-\alpha t}$ requiere 
 \section{Transformada Z}
 
 $$Z\left[ x[n] \right] = \displaystyle \sum_{n = -\infty}^{\infty}\, x[n]z^{-n} = X(z)$$
+
+%imagen
 
 Representar $3\ldotp76$ a 8 bits, 4 enteros y 4 decimales
 
@@ -1059,16 +1061,177 @@ V_{R}(s) \\
 \]
 
 El modelo de motor despreciando la fricción
-%
-%
-%\section{Cinemática del Robot}
-%
-%
-%\section{Control ON - Off}
-%
-%\section{Control Proporcional}
-%
-%
-%\section{Control Integral Proporcional}
-%
-%\section{Control Derivativo Proporcional}
+
+\[
+\begin{bmatrix}
+\omega_{wI}(s) \\
+\omega_{wD}(s)
+\end{bmatrix} = \begin{bmatrix} \dfrac{k_{01}V_{1}(s)}{s+\alpha_{1}}\\ \dfrac{k_{0D}V_{D}(s)}{s+\alpha_{D}}
+\end{bmatrix}
+\]
+
+Voltaje que se tiene que aplica a los motores
+
+\[
+\begin{bmatrix}
+V_{1}(s) \\
+V_{D}(s)
+\end{bmatrix} = \begin{bmatrix} \dfrac{\omega_{1}(s)(s+\alpha_{1})}{k_{01}}\\ \dfrac{\omega_{D}(s)(s+\alpha_{D})}{k_{0D}}
+\end{bmatrix}
+\]
+
+\section{Cinemática del Robot}
+
+%imagen
+Número de tics del encoder para una vuelta complera de la llanta.
+
+%imagen
+
+%imagen
+
+$$S_{L} = 2 \pi r\frac{ticks{L}}{ticks_per_rev}$$
+
+Análogo para $S_{R}$
+
+$$S=\frac{(S_{L}+S_{R})}{2}$$
+
+%imagen
+
+$$S_{L}=\phi(c+\frac{d}{2})$$
+$$S_{R}=\phi(c-\frac{d}{2})$$
+
+$$S_{L} - S_{D} \, = \phi\,d \hspace{0.5cm}  \Rightarrow \hspace{0.5cm} \phi \,= \frac{S_{L} - S_{R}}{d}$$
+	
+	
+$$V_{R}=2\pi r \dot{\theta_{R}} = 2 \pi r \omega_{R} $$
+
+$$V_{L}=2\pi r \dot{\theta_{L}} = 2 \pi r \omega_{L} $$
+
+Velocidad angular
+
+$$\omega = \frac{2\pi r}{d}(\omega_{L}-\omega_{D})$$
+
+$$v=v_{R} + v_{L}$$
+
+$$
+\begin{bmatrix}
+V \\
+\omega
+\end{bmatrix} = 2 \pi r \begin{bmatrix} \dfrac{1}{2} & \dfrac{1}{2} \\ \\ \dfrac{-1}{d} & \dfrac{d}{2} 
+\end{bmatrix} \begin{bmatrix} V \\ \omega
+\end{bmatrix}
+$$
+
+$$
+\begin{bmatrix}
+\omega_{R} \\
+\omega_{L}
+\end{bmatrix} = \dfrac{1}{2\pi r} \begin{bmatrix} 1 & \dfrac{-d}{2} \\
+ \\ 1 & \dfrac{d}{2} 
+\end{bmatrix} \begin{bmatrix} V \\ \omega
+\end{bmatrix}
+$$
+
+
+
+\section{Control ON - Off}
+El motor se prende o se apaga dependiendo de si la velocidad del motor esta abajo o arriba de la velocidad deseada.
+
+$R(t) = $ Función que controla el motor
+
+$V_{act}(t) = $ Velocidad del moto
+
+$V_{des}(t) = $ Velocidad deseada
+
+$k_{c} = $ Valor de la constante del control
+
+$$
+R(t) = \begin{cases}
+k_{c}  \hspace{0.3cm}  & si \hspace{0.3cm}  V_{act}(t) < V_{des}(t) \\
+0 & si  \hspace{0.3cm}  V_{act}(t) \geq V_{des}(t)
+\end{cases}
+$$
+
+%imagen
+
+\section{Control Proporcional}
+
+$$
+R(t) = k_{p} (v_{des}(t)-v_{act}(t))
+$$
+%imagen 
+
+\section{Control Integral Proporcional}
+
+La idea del controlador I es reducir el error del estado estable del controlador P. 
+$$
+R(t) = k_{p} [  \,e(t)+ \dfrac{1}{T_{1}}\int_{0}^{t} \! e(t) \,dt\, ]
+$$
+
+Discretizando: regla trapezoidal
+
+$$
+R_{n} = k_{p} e_{n} + \dfrac{k_{p}}{T_{1}} \, t_{\Delta} \, \sum_{i=1}^{n} \dfrac{e_{i}-e_{i-1}}{2}
+$$
+
+Si se calcula \hspace{0.3cm}  
+
+$R_{n}-R_{n-1}$
+
+$$R_{n}-R_{n-1} =\, k_{p}(e_{n}-e_{n-1}) + \dfrac{k_{p}}{T_{I}} \, t_{\Delta}(\dfrac{e_{n}-e_{n-1}}{2})
+$$
+	
+$$
+k_{I} = \dfrac{k_p}{t_I} t_{\Delta} \hspace{0.5cm} \Rightarrow \hspace{0.5cm} R_n= \, R_{n-1} + k_p(e_n - e_{n-1}) + k_1 \, (\dfrac{e_n - e_{n-1}}{2}
+$$
+
+Reduce el error en estado estable.
+
+\section{Control Derivativo Proporcional}
+
+$$
+R(t)= k_p \left [(t)+ T_D \dfrac{d}{dt} e(t) \right ]
+$$
+
+CONTROL PID
+
+$$
+R(t)=k_p \left [e(t)+ \dfrac{1}{T_1} \int_{0}^{1} e(t) \, dt + T_D \dfrac{d}{dt} \, e(t) \right ]
+$$
+
+En el discreto
+
+$$
+R_{n} = k_{p} e_{n} + \dfrac{k_{p}}{T_{I}} \,\, t_{\Delta} \, \sum_{i=1}^{n} \dfrac{e_{i}-e_{i-1}}{2} + \dfrac{1}{t_{Delta}} \, k_p \, T_D \, (e_n - e_{n-1})
+$$
+
+$$
+k_1 = \dfrac{k_p}{T_1} \, t_{\Delta} \, ; \hspace{0.3cm} k_D = \dfrac{1}{t_{\Delta}} \,k_p T_{\Delta}
+$$
+
+$$
+R_n - R_{n-1}= k_p(e_n - e_{n-1}) + k_I \, \dfrac{(e_n - e_{n-1})}{2}+ k_D \, (e_n - 2e_{n-1}+ e_{n-2})
+$$
+
+$$
+R_n = R_{n-1}+k_p(e_n - e_{n-1}) + k_I \, \dfrac{(e_n - e_{n-1})}{2}+ k_D \, (e_n - 2e_{n-1}+ e_{n-2})
+$$
+
+%imagen
+
+\section{Red Neuronal}
+
+%imagen
+
+$$
+y_i = f\left(\sum_{i=0}^{n-1} x_i \, w_i \right)
+$$
+
+%imagen
+
+
+Cada salida esta conectada a una entrada de las demás neuronas (formando una red). El aprendizaje se manifiesta mediante la variación de los pesos de la matriz $\omega_k$.
+
+El sistema debe entrenarse por un humano experto. 
+
+
