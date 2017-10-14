@@ -34,19 +34,38 @@ En los comportamientos puros, la respuesta únicamente depende del estímulo.
 
 \subsection{Organización de los comportamientos:} 
 
-%imagen
+\textit{Esquema 1}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img51.png}
+	\label{figura51}
+\end{figure}
+
 
 Algunos comportamientos bloquean la salida de otros. Solamente la salida de uno es el que se usa, todos se activan. El diagrama anterior decide la prioridad.
 
 La salida generalmente es un vector que, por ejemplo, indica la magnitud y dirección del movimiento del robot.
 
-%imagen
+\textit{Esquema 2}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img52.png}
+	\label{figura52}
+\end{figure}
+
 
 El árbitro decide cuál es la respuesta.
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img53.png}
+	\label{figura53}
+\end{figure}
 
-El sumador hace un promedio ponderado por ganancias.
+
+El sumador hace un promedio ponderado por\textit{ganancias}.
 
 $$
 \sum_{i=1}^{N} \, g_i \, R_i
@@ -69,7 +88,11 @@ Un robot circula con:
 	\item[\textbullet] Dos sensores adelante, para detectar obstáculos (por ejemplo, infrarrojos, ultrasonido, etc.)
 \end{itemize}
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img54.png}
+	\label{figura54}
+\end{figure}
 
 Obviamente:
 \begin{itemize}
@@ -79,11 +102,23 @@ Obviamente:
 	\item[\textbullet]Si los dos detectan, hacerlo para atrás y giro 90°.
 \end{itemize}
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img55.png}
+	\label{figura55}
+\end{figure}
+
 
 \textit{Notación de diagrama de flujo}
 
-%imagen
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img56.png}
+	\label{figura56}
+	
+\end{figure}
+\break
 
 Si se quisiera programar esto con una subrutina, hace todo.  En la teoría de comportamientos necesito una respuesta inmediata y necesito que cuando vuelva a entrar se guarde el estado.
 
@@ -97,20 +132,34 @@ Básicamente el concepto es que alguna de las entradas es inhibida por otra máq
 
 Con AFSM podemos tener diferentes capas y hacer una respuesta \textbf{jerárquica}.
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img57.png}
+	\label{figura57}
+	
+\end{figure}
+\break
 
 \section{Campos Potenciales}
 
 Se modela el robot como una canica. Los obstáculos ahora son montañas que ejercen fuerzas de repulsión. El destino es un hoyo.
 El robot se mueve a través de un campo potencial por la pendiente más pronunciada hasta que lo lleva al destino.
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img58.png}
+	\label{figura58}
+\end{figure}
+
 $$
 y=y_0 + (x-x_0)^2
 $$
 
-El mínimo se encuentra diferenciando.
 
+El mínimo se encuentra diferenciando.
+$$
+\dfrac{\partial y}{\partial x} = 2(x-x_0)
+$$
 $$
 x^* = x_0
 $$
@@ -120,7 +169,9 @@ Empiezo con un punto $x_{n-1}$ cualquiera y dependiendo del valor de la pendient
 
 Es una relación de recurrencia:
 
-%formula 
+\begin{center}
+	$ x_n= \int(x_{n-1}) = x_{n-1} - \partial \dfrac{\partial y}{\partial x} $ \,  donde $\partial$ es una constante.	
+\end{center}
 
 \textbf{Por ejemplo:} \\
 Si consideramos $\delta = \dfrac{1}{2}$ se tiene $x_n = x_{n-1} \, \dfrac{-1}{2}(2(x_{n_1}-x_0)) = x_0$.
@@ -130,7 +181,7 @@ Esto da pie a considerar la situación general.
 
 \textbf {Se utiliza Steepest Descent.} 
 
-Posición del robot en n: $q_n = \left[x_n,y_n\right]^T$
+\textit{Posición del robot en n:} $q_n = \left[x_n,y_n\right]^T$
 $$
 q_n=q_{n-1}-\delta f (q_{n-1}) $$
 
@@ -149,8 +200,9 @@ $$
 La fuerza de atracción en q es:
 
 $$
-U_{atr}= \varepsilon_1 
+\nabla U_{atr}= \varepsilon_1 \begin{bmatrix}(x-x_{dest}) \\ (y-y_{dest}) \end{bmatrix} = \varepsilon_1[q-q_{dest}] = F_{atr}(q)
 $$
+
 
 
 La fuerza de atracción se va a convertir en aceleración. Para fuerzas muy grandes se transforma en aceleraciones muy grandes. 
@@ -165,35 +217,55 @@ $$
 Esto es un campo cónico:
 
 $$
-U_{atr}=E_2\sqrt{(x-x_{dest}^2 + (y-y_{dest})^2)}
+U_{atr}=E_2\sqrt{(x-x_{dest})^2 + (y-y_{dest})^2)}
 $$
 
 $$
-U_{atr}=E_2
+\nabla U_{atr} = E_2 \begin{bmatrix} \dfrac{(x-x_{dest})}{\sqrt{(x-x_{dest})^2+(y-y_{dest})^2}} \\ 
+\dfrac{(y-y_{dest})}{\sqrt{(x-x_{dest})^2+(y-y_{dest})^2}}
+\end{bmatrix} = \dfrac{E_2}{\rVert q-q_{dest}\lVert}
+\begin{bmatrix}
+x-x_{dest} \\
+y-y_{dest}
+\end{bmatrix} = E_2 \dfrac{q-q_{dest}}{\lVert q-q_{dest}\rVert}
 $$
 
 Campos Repulsivos
+
 ¿Cómo representar el obstáculo? Se podría considerar un solo vector en el centroide, una serie de puntos que ejercen repulsión, etc. Depende del diseñador.
 
-$$
-U_{rep}(q)=\frac{1}{2} \eta
-$$
+$$U_{rep}(q)=\frac{1}{2}\eta \left( \dfrac{1}{\lVert q-q_{obs}\rVert} - \dfrac{1}{d_0} \right) ^2 $$
 
-Esto aplica cuando $\|q-q{obs} \|$. En caso contrario, se toma como 0. Esto es para que no lo tomes en cuenta si está demasiado lejos.
+Esto aplica cuando $q-q_{obs}$. En caso contrario, se toma como 0. Esto es para que no lo tomes en cuenta si está demasiado lejos.
 
 $$
-U_{rep}(q)=F_{rep}(q)
+\nabla U_{rep}(q)=-\dfrac{\eta}{\rVert q-q_{obs}\lVert ^2} \left( \dfrac{1}{\lVert q-q_{obs}\rVert} - \dfrac{1}{d_0} \right)
+\left( \dfrac{q-q_{dest}}{\lVert q-q_{dest}\rVert}\right)
+ =F_{rep}(q)
 $$
 
 En general,
 
 $$
 F(q)=F_{atr}(q)+\sum_{i=1}^{n}\, F_{rep}(q)
-f(q)=\frac{F(q)}{\|F(q)\|}
+$$
+
+$$
+f(q)=\frac{F(q)}{\|F(q)\|}=\nabla U(q)
+$$
+
+$$
 q_{i+1}=q_i - \delta_i f(q_i)
 $$
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.3\textwidth]{images/img59.png}
+	\label{figura59}
+\end{figure}
+
+
+
 \begin{ejemplo}
 	Robot:(1,1) \\
 	Obstáculo: hexágono centrado en (2,2) \\
@@ -205,22 +277,48 @@ $$
 Se tiene: 
 $$
 F_{atr}(q_0) = \varepsilon_1 (q_0-q_{dest}) = (-4,-3)
-F_{rep}(q_0) = -(0\ldotp3585,0\ldotp3585)
 $$
+
+$$
+F(q_0) = - \dfrac{\eta}{\rVert q_0 - q_{obs} \lVert^2} \left(\dfrac{1}{\lVert q_0-q_{obs}\rVert} - \dfrac{1}{d_0} \right)
+\left( \dfrac{q_0 - q_{obs}}{\lVert q_0 - q_{obs}\rVert}\right)
+$$
+
+$$
+= \dfrac {-2}{\sqrt{2}} 
+\left(\dfrac{1}{\sqrt{2}} - \dfrac{1}{5}\right) \left(\dfrac{1}{2\sqrt{2}} \right) (-1,-1)
+$$
+
+
+$$=-(0\ldotp3585,0\ldotp3585)$$
 
 La fuerza total es: 
 
+
+
 $$
-F(q_0) = (-3\ldotp64,-2\ldotp64) \hspace{0.5cm} f(q_0)=(-0\ldotp8091,-0\ldotp 5868)
+F(q_0) =(-3\ldotp64,-2\ldotp64) \hspace{0.5cm} f(q_0)=(-0\ldotp8091,-0\ldotp 5868)
 $$
 Finalmente:
 
-$$
-q_1=q_0-\delta_0 f(q_0)
-	=(1,1)+(0\ldotp8091.0\ldotp5868)
-	=(1\ldotp8091,1\ldotp5868)
-$$
+%\begin{eqnarray*}
+%$$
+%q_1 = q_0-\delta_0 (q_0) \\
+% = (1,1)+(0\ldotp8091.0\ldotp5868) \\
+% = (1\ldotp8091,1\ldotp5868) 
+%$$
+%\end{eqnarray*}
+
+\begin{equation*}
+\begin{aligned}
+q_1 & = \,  q_0-\delta_0 (q_0) \\
+ & = \, (1,1)+(0\ldotp8091.0\ldotp5868) \\
+ & = \, (1\ldotp8091,1\ldotp5868) 
+\end{aligned}
+\end{equation*}
+
 Obsérvese que no hemos considerado la \textbf{orientación inicial del robot}.
+
 
 
 ¿Cómo encontrar las constantes? Empíricamente
@@ -233,36 +331,51 @@ Los obstáculos conocidos se representarán por polígonos que tienen nodos orde
 
 El espacio se divide en celdas y en cada celda se calcula la fuerza total de repulsión.
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img60.png}
+	\label{figura60}
+\end{figure}
 
 Etc.
 
 ¿Cómo encontrar la fuerza de repulsión en cada celda?
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img61.png}
+	\label{figura61}
+\end{figure}
 
 El punto $x_r,y_r$ es el centro de la celda en donde se está (se asume que el robot está en el centro de la celda).
 
-El punto $(x_f,y_f)$ es  un punto arbitrario (se quiere calcular para la mayor cantidad de direcciones posibles. No es en línea sino que se hace offline).
+El punto $(x_f,y_f)$ es  un punto arbitrario (se quiere calcular para la mayor cantidad de direcciones posibles.
+No es en línea sino que se hace offline).
 
-$$
-L_1:\colon y=m_1x+b_1
-L_R:y=m_Rx+b_R
-$$
+
+\begin{flalign*}
+\begin{aligned}
+ L_1:\colon y=m_1x+b_1 \\
+ L_R:y=m_Rx+b_R
+\end{aligned}
+\end{flalign*}
+
 
 Nótese que 
 
-$$
-x_f=d\cos\phi+x_r
+\begin{flalign*}
+\begin{aligned}
+x_f=d\cos\phi+x_r \\
 y_f=d\sin\phi+y_r
-$$
+\end{aligned}
+\end{flalign*}
 
 Donde el ángulo es entre el eje x y la línea $L_R$.
 
 Obs: se puede encontrar
 
 $$
-m=\frac{y_1-y_0}{x_1-x_0} \hspace{0.5cm} b=\frac{x_1y_0-y_1x_0}{x_1-x_0}
+m=\dfrac{y_1-y_0}{x_1-x_0} \hspace{0.5cm} b=\frac{x_1y_0-y_1x_0}{x_1-x_0}
 $$
 
 Los puntos de intersección son
@@ -271,12 +384,24 @@ $$
 x_{int}=\frac{b_r-b_1}{m_1-m_r} \hspace{0.5cm} y_{int}=m_r x_{int} + b_r
 $$
 
-Obsérvese que se tiene que cumplir que
+Obsérvese que se tiene que cumplir que $x_{int} \in(x_0,x_1)$ y$y_{int} \in(y_0.y_1)$
+
 \section{Cómo calcular el campo potencial para el caso de objetos desconocidos}
 
 Lo anterior se hace offline y se alimenta al robot. Si hay objetos desconocidos:
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img62.png}
+	\label{figura62}
+\end{figure}
+
+\begin{scaja}
+Tarea 1 \\
+Usar Roc2. Poner obstáculos pickable en el medio. Programar un robot para encontrar esos obstáculos y que
+los lleve a un lugar. Usar nada más la parte rectangular del mundo. El robot se mueve aleatoriamente. Tener
+una pila que se vaya bajando.
+\end{scaja}
 
 El ángulo theta es el eje principal del robot. El ángulo alpha es el ángulo entre el eje y el sensor.
 
@@ -291,10 +416,7 @@ $
 ¿Qué se quiere?
 De $(x_{i-1},y_{i-1},\phi_{i-|})$ (donde está el robot) necesito llegar a $(x_i,y_i,\phi_i)$.
 
-Obsérvese que:
-
- $
- x_i=x_{i-1}+x_i \cos(\phi_i)
+Obsérvese que:  $x_i=x_{i-1}+x_i \cos(\phi_i)
  y_i=y_{i-1}+x_i \sin(\phi_i)
  $
  

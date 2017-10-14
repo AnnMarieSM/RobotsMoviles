@@ -66,9 +66,9 @@
 \contentsline {section}{\numberline {3.2}M\IeC {\'a}quina de Estado Aumentada}{47}{section.3.2}
 \contentsline {section}{\numberline {3.3}Arquitecturas Reactivas (o por Comportamientos)}{47}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Organizaci\IeC {\'o}n de los comportamientos:}{48}{subsection.3.3.1}
-\contentsline {section}{\numberline {3.4}M\IeC {\'a}quinas de Estado}{48}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Algoritmo para el Comportamiento de Evadir Obst\IeC {\'a}culos}{48}{subsection.3.4.1}
-\contentsline {section}{\numberline {3.5}AFSM (Augmented Finite State Machine)}{49}{section.3.5}
-\contentsline {section}{\numberline {3.6}Campos Potenciales}{49}{section.3.6}
-\contentsline {section}{\numberline {3.7}C\IeC {\'o}mo calcular el campo potencial para el caso de objetos desconocidos}{52}{section.3.7}
+\contentsline {section}{\numberline {3.4}M\IeC {\'a}quinas de Estado}{49}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Algoritmo para el Comportamiento de Evadir Obst\IeC {\'a}culos}{49}{subsection.3.4.1}
+\contentsline {section}{\numberline {3.5}AFSM (Augmented Finite State Machine)}{50}{section.3.5}
+\contentsline {section}{\numberline {3.6}Campos Potenciales}{51}{section.3.6}
+\contentsline {section}{\numberline {3.7}C\IeC {\'o}mo calcular el campo potencial para el caso de objetos desconocidos}{55}{section.3.7}
 \contentsfinish 
