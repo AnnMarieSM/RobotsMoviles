@@ -71,4 +71,11 @@
 \contentsline {section}{\numberline {3.5}AFSM (Augmented Finite State Machine)}{50}{section.3.5}
 \contentsline {section}{\numberline {3.6}Campos Potenciales}{51}{section.3.6}
 \contentsline {section}{\numberline {3.7}C\IeC {\'o}mo calcular el campo potencial para el caso de objetos desconocidos}{55}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Trayectorias}{56}{subsection.3.7.1}
+\contentsline {section}{\numberline {3.8}Escalamiento de pol\IeC {\'\i }gonos}{60}{section.3.8}
+\contentsline {section}{\numberline {3.9}Comportamientos con Redes Neuronales}{62}{section.3.9}
+\contentsline {section}{\numberline {3.10}Topolog\IeC {\'\i }a de Redes Neuronales}{63}{section.3.10}
+\contentsline {section}{\numberline {3.11}Modelo del Perceptr\IeC {\'o}n}{64}{section.3.11}
+\contentsline {section}{\numberline {3.12}Perceptr\IeC {\'o}n multicapas}{65}{section.3.12}
+\contentsline {section}{\numberline {3.13}C\IeC {\'o}mo extender para un perceptr\IeC {\'o}n multicapas}{67}{section.3.13}
 \contentsfinish 

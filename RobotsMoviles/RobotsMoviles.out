@@ -62,3 +62,10 @@
 \BOOKMARK [1][-]{section.3.5}{AFSM \(Augmented Finite State Machine\)}{chapter.3}% 62
 \BOOKMARK [1][-]{section.3.6}{Campos Potenciales}{chapter.3}% 63
 \BOOKMARK [1][-]{section.3.7}{C\363mo calcular el campo potencial para el caso de objetos desconocidos}{chapter.3}% 64
+\BOOKMARK [2][-]{subsection.3.7.1}{Trayectorias}{section.3.7}% 65
+\BOOKMARK [1][-]{section.3.8}{Escalamiento de pol\355gonos}{chapter.3}% 66
+\BOOKMARK [1][-]{section.3.9}{Comportamientos con Redes Neuronales}{chapter.3}% 67
+\BOOKMARK [1][-]{section.3.10}{Topolog\355a de Redes Neuronales}{chapter.3}% 68
+\BOOKMARK [1][-]{section.3.11}{Modelo del Perceptr\363n}{chapter.3}% 69
+\BOOKMARK [1][-]{section.3.12}{Perceptr\363n multicapas}{chapter.3}% 70
+\BOOKMARK [1][-]{section.3.13}{C\363mo extender para un perceptr\363n multicapas}{chapter.3}% 71

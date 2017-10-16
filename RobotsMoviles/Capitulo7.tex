@@ -403,20 +403,12 @@ los lleve a un lugar. Usar nada más la parte rectangular del mundo. El robot se
 una pila que se vaya bajando.
 \end{scaja}
 
-El ángulo theta es el eje principal del robot. El ángulo alpha es el ángulo entre el eje y el sensor.
 
 
-$
-x_{obs}=d\cos(\phi+\alpha) \\ y_{obs}=d\sin(\phi+\alpha) \\ \\
-q-q_{obs}=(0,0)-(x_{obs},y_{obs})=(-x_{obs},-y{obs})
-$
-
-(puesto que se cambia el eje de coordenadas).
-
-¿Qué se quiere?
+¿Qué se quiere? \\
 De $(x_{i-1},y_{i-1},\phi_{i-|})$ (donde está el robot) necesito llegar a $(x_i,y_i,\phi_i)$.
 
-Obsérvese que: 
+Obsérvese que: \\
  $x_i=x_{i-1}+x_i \cos(\phi_i)
  y_i=y_{i-1}+x_i \sin(\phi_i)
  $
@@ -434,28 +426,526 @@ Esto se conoce como \textbf{computación directa}.
 Otra opción es:
 
 $
-\phi=\arctan\ (\frac{y_i -y_{i-1}}{x_i -x_{i-1}})
+x'_i= \dfrac{(x_i - x_{i-1}) + (y_i - y_{i-1})}{\cos(\phi_i) + \sin(\phi_i)}
 $
 
-
-y obviamente también se tiene que 
-
-Esto se llama computación inversa y es la que nos interesa.
-
-
-
-
-Ejemplo
-
-
-Esto se conoce como computación directa.
-
-Otra opción es:
+$
+\phi_i = \phi_i - \phi_{i-1}
+$
+y obviamente también se tiene que $x_i = \sqrt{(x_i - x_{i-1})^2 + (y_i - y_{i-1})^2 }$
 
 
 
-y obviamente también se tiene que 
-
-Esto se llama computación inversa y es la que nos interesa.
+Esto se llama \textbf{computación inversa} y es la que nos interesa.
 
 
+
+\textbf{Ejemplo}
+
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img63.png}
+	\label{figura63}
+\end{figure}
+
+
+\underline{Sup:} Los puntos los encontré con campos potenciales (recordar que el campo potencial da el vector de
+movimiento:
+
+$q_1=(x_i,y_i) = q_{i-1} - \delta f (q_{i-1})$
+\\ \\
+$ i=1 $ \\
+$ x_0 = 0, \hspace{0.5cm} y_0=0, \hspace{0.5cm} \phi_0=0 $ \\
+$x_i =1 \hspace{0.5cm} y_i=0 $
+
+Por lo tanto: $\phi_1 =  arctan \, \left( \dfrac{y_1-y_0}{x_1-x_0} \right) = 0 \hspace{0.3cm} y \hspace{0.3cm} x_1 = \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2} = 1.$ Y finalmente: \hspace{0.3cm} $\phi_i=\phi_i-\phi_{i-1} = 0$
+
+Ad nauseam. \\
+Los valores son:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img64.png}
+	\label{figura64}
+\end{figure}
+
+
+
+\subsection{Trayectorias}
+
+El robot casi siempre avanza en línea recta. \\
+¿A qué velocidad debe ir el robot?
+
+El robot está en $(x_{i-1},y_{i-1},\phi_{i-1}) $y quiero llegar a $(x_i,y_i)$ .¿Cómo voy a recorrer la distancia $x_i$?
+Tengo $t_0$ y el tiempo $t_f$ (final).
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img65.png}
+	\label{figura65}
+\end{figure}
+
+
+Se quiere una función $f(t)$ que sea suave. Se asume que el robot está parado en ambos extremos.
+
+$f(0)=0, \, f(t_f)= x_i' \hspace{0.3cm}$ [posiciones inicial y final]
+
+$f'(0)=0, \, f'(t_f)= x_i $ \hspace{0.3cm}[velocidades inicial y final]
+
+
+Asumiendo una relación cúbica:
+
+$f(t)=a_0 +a_it + a_2 t^2 + a_3 t^3 \, f'(t_f)= x_i$
+
+$f'(t)=a_1 + 2a_2t + 3a_3 t^2$
+
+$f''(t)=2a_2 + 6a_3t$
+
+Se encuentran:
+
+$a_0, a_1=0, a_2=\dfrac{3x_i}{t_f^2},a_2=\dfrac{-2x_i}{t_f^3}$. La ecuación es entonces:
+$$
+f(t)=\dfrac{3x_i}{t_{f}^2}t^2 - \dfrac{2x'_{i}}{t_{f}^2} t^3
+$$
+
+$$
+f'(t)=\dfrac{6x_i}{t_{f}^2}t -  \dfrac{6x'_{i}}{t_{f}^2} t^2
+$$
+
+$$
+f''(t)=\dfrac{6x_i}{t_{f}^2}- \dfrac{12x'_{i}}{t_{f}^2} t
+$$
+
+\begin{ejemplo}
+	
+	
+	Suponer $ t_f = 3 \,  x_1=1$ \\
+	Entonces
+	
+	$$f(t)=\dfrac{1}{3}t^2 - \dfrac{2}{27}t^3
+	$$
+	
+	$$f'(t)=\dfrac{2}{3}t - \dfrac{6}{27}t^2$$
+	
+	$$f''(t)=\dfrac{2}{3} - \dfrac{12}{27}t$$
+	
+\end{ejemplo}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img66.png}
+	\label{figura66}
+\end{figure}
+
+
+$$
+f'(t)$$
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img67.png}
+	\label{figura67}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img68.png}
+	\label{figura68}
+\end{figure}
+
+
+En Roc2 para mover es:
+
+mv $x'_i \hspace{0.3cm} \phi_i\hspace{0.3cm}t_f$
+
+donde la primera está dada en decímetros y el ángulo en radianes y el tiempo en segundos.
+
+En Roc2 las funciones cinemáticas se encuentran en el archivo Roc2UserMv.
+
+\underline{\textit{Cómo relajar el supuesto de la velocidad final 0}}
+
+Suavizar la trayectoria.
+
+\begin{scaja} 
+	
+	Una forma: Le ajustas una parábola a la esquinita
+	$y=y_0 + (x-x_0)^2$ con $x_b \leq x \leq x_f $ puntos pre-escogidos.
+	
+	\vspace{5mm}
+	
+	Otra forma: linearizar (segmentitos de recta).
+	
+\end{scaja}
+
+\textbf{Rotar y trasladar}
+
+polygon type-object $(x0,  y0, x1, \, y1, \, x2, \, y2, \, ... yn yn)$
+position \textit{room} type-object name $xc yc theta ) \leftarrow$ esta función traslada a xc, yc y rota theta
+Type-object define un objeto genérico, podemos definir varios objetos (de ese tipo).
+
+\vspace{5mm}
+Dados $(x_p,y_p)$
+
+
+$ x= x_p \cos\alpha - y_p \sin\alpha +x_c $
+
+$y = y_p \cos\alpha + x_p \sin\alpha +y_c$
+
+Donde $x_c$, $y_c$ es el punto fijo sobre el que se está girando.
+
+\begin{ejemplo}
+	Polygon mesa $1 \, 0 \, 0\, 0\, 2\, 2\, 2\, 2\, 0$ \\	
+	Position salon mesa1 mesa\_principal 44 $\frac{\pi}{4}$
+\end{ejemplo}
+
+Entonces:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img69.png}
+	\label{figura69}
+\end{figure}
+
+\textbf{Ancho del robot}
+Se necesita considerar el ancho del robot. Por lo menos, ensanchar los obstáculos conocidos en el radio del
+robot.
+¿Cómo hacer con los desconocidos? De la lectura del sonar, restarle el radio del robot.
+
+\section{Escalamiento de polígonos}
+
+Suponer (0, 2), (1,3), (2, 2), (1,1) un polígono.
+
+
+\begin{enumerate}[1.]
+	\item Encontrar el centroide
+	\item Moverlo al origen
+	\item Multiplicar
+	\item Volverlo a mover al centroide.
+\end{enumerate}
+
+
+Con $\lambda =2$
+
+
+$P_esc = \lambda (P - C) + C$
+
+$P = \{(-1,2),(1,4),(3,2),(1,0)\}$
+
+\begin{scaja}
+	\textbf{Siguiente tarea}
+	
+	El mundo tiene mesas y otros dos objetos tipo, puestas y rotadas.
+	
+	Objetos fijos: sillones, mesas, cajas, etc. (al menos 3)
+	\\
+	
+	Descomponer el mundo en celdas.
+	\\
+	
+	Calcular los vectores de repulsión en cada celda.
+	Si el centroide de la celda queda dentro del obstáculo, está ocupada
+	Hacer una “estrella” hacia todas las direcciones y calcular si la intersección con algo es menor o igual a d0.
+	\\
+	La repulsión total es la suma.
+	\\	
+	
+	Tres archivos: 1) objetos tipo 2) posiciones objetos réplica 3) archivo final .WRL con la descripción del
+	mundo.
+\end{scaja}
+
+
+\textbf{Verificación de si un punto está dentro o fuera de un polígono}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img70.png}
+	\label{figura70}
+\end{figure}
+	\break
+
+Ecuación paramétrica de la recta
+$
+x = x_0 + (x_1 - x_0)t \\
+y = y_0 + (y_1 - y_0)t \\
+t \in (0,1)
+$
+Los puntos de la ecuación general
+
+$
+(y_0 - y_1)x + (x_1 - x_0)y + (x_oy_1 - x_1y_0) = 0
+$
+
+Puntos que cumplen esta ecuación, están en la línea.
+\\ Puntos que evalúan >0, caen a la izquierda. \\ Puntos que evalúan <0, caen a la derecha.
+
+\textbf{Problema de los campos potenciales}
+\\ Por ejemplo un mínimo local
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img71.png}
+	\label{figura71}
+\end{figure}
+\break
+
+
+El vector resultante es 0 y el robot se queda inmóvil o en un ciclo.
+
+\section{Comportamientos con Redes Neuronales}
+
+Redes neuronales: 1943 $\rightarrow$  McCullock
+
+
+Una red neuronal es un modelo matemático de cómo funciona una neurona.
+
+Una neurona está conectada a otras neuronas.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img72.png}
+	\label{figura72}
+\end{figure}
+
+La entrada a la red neuronal es una imagen (por ejemplo, la cámara del robot). Se puede entregar la
+información en bruto o procesada.
+
+Las conexiones se van uniendo por medio de aprendizaje.
+
+Se entrena a la red para que siga los comportamientos, por ejemplo un coche autónomo. Para entrenarlo, se
+puede poner a un conductor y hacer que la red aprenda los comportamientos de acuerdo a las imágenes.
+La respuesta de la red es: para una cierta imagen, se giró a la izquierda violentamente; para otra imagen, se
+giró ligeramente; etcétera.
+
+También se puede hacer con información de sonares, etc.
+
+Puedo hacer máquinas de estado con redes neuronales.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img73.png}
+	\label{figura73}
+\end{figure}
+
+\textbf{Modelo}
+
+Por cada neurona se tiene
+
+$u = \sum_{i=1}^{n} w_i y_i + \theta $
+
+Entradas: $ y_j \rightarrow $  vienen de otras neuronas
+Pesos: $w_j$
+Umbral de activación: $ \theta $
+
+La salida de la neurona es la \textit{función de activación}
+
+$$
+a=f(u)
+$$
+
+Generalmente $ f(u) = \dfrac{1}{1 + e^(\dfrac{-u}{T})}$ (un sigmoide)
+
+$T$ es una constante de temperatura. 
+
+
+Resulta que f es la solución de la ecuación diferencial 
+
+$$
+\dfrac{dy}{du} = \dfrac{y(1-y)}{T}
+$$
+
+
+\section{Topología de Redes Neuronales}
+
+¿Qué pasa con la topología de redes neuronales (muchas neuronas)?
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img74.png}
+	\label{figura74}
+\end{figure}
+\break
+
+Topología acíclica (no hay retroalimentación de la salida hacia otra interna) $\rightarrow$ el dígrafo es acíclico.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img75.png}
+	\label{figura75}
+\end{figure}
+
+
+Topología cíclica (con retroalimentación) $\rightarrow$ el dígrafo es cíclico
+Estos fueron los primeros modelos de redes neuronales.
+
+\section{Modelo del Perceptrón}
+
+$
+u(x) = \sum_{i=1}^{n} w_i x_i + w_0 
+$
+y
+
+$
+y(x) = \begin{cases}
+1, \hspace{0.3cm} u(x) \geq 0    \\
+0,\hspace{0.3cm}   u(x) < 0  
+\end{cases}
+$
+
+Este modelo es utilizado para \textit{detección y clasificación}.
+
+Si las características de la entrada $x$ es cercano a $w$ tal que su producto interno $x^Tw$ es mayor que un
+umbral $-w_0$, entonces la salida es 1, indicando la detección de un objetivo.
+
+
+\begin{ejemplo}
+	Dos neuronas, una que representa una mesa y otra una silla.
+	Las dos tienen las mismas entradas, que son características invariantes a distancia y orientación. La salida
+	debe de ser 1 para la de la silla y 0 para la de la mesa.
+\end{ejemplo}
+
+\begin{nota} Entrenar a una red neuronal es encontrar los pesos. \end{nota}
+
+
+Minsky y Shannon
+
+Shannon propone la matemática booleana y notación binaria en las computadoras.
+Wiener inventó el término \textit{cibernética} (el estudio de los sistemas – eléctricos, mecánicos, sociales, etc. – y su control).
+
+
+LEER ASIMOV Y PHILIP DICK
+
+\section{Perceptrón multicapas}
+
+Capa de entradas
+Capa intermedia
+Capa de salida
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img76.png}
+	\label{figura76}
+\end{figure}
+
+La capa de entrada tiene M neuronas.
+La capa intermedia se conoce como \textit{capa oculta} y tiene H neuronas.
+La capa de salida tiene N neuronas.
+
+El objetivo es encontrar los pesos que minimicen el error cuadrático medio.
+
+
+Cada salida de las neuronas de salidas es un objetivo de clasificación.
+
+\begin{ejemplo}
+	
+¿Cómo encontrar los pesos?
+
+Tres entradas, una neurona de entrada.
+
+$u=Wx$ donde $x = [1 \hspace{0.3cm} x_1 \hspace{0.3cm}  x_2]^T \hspace{0.3cm} y \hspace{0.3cm} W= [W_0 \hspace{0.3cm} w_1 \hspace{0.3cm} W_2]$
+\\
+
+Encontrar unos pesos que dado un objetivo $d_k$ e vaya actualizando con la característica que $\varepsilon \rightarrow 0$. Se
+tendrán K muestras de entrenamiento $(x_k,d_k)$; salidas $z_k$ y un error total $E= \sum_{i=1}^{K}  \varepsilon_k^2$, donde $\varepsilon= d_k - z_k$.
+\\
+
+$d_k \in (0.1)$ generalmente. 
+
+\end{ejemplo}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img77.png}
+	\label{figura77}
+\end{figure}
+
+Obsérvese que $z_k = f(Wx_k)$.
+
+El objetivo final es minimizar la función $E$ respecto a $W$. 
+
+La solución es no lineal si f es una función sigmoide, por lo que generalmente se realiza la minimización con
+iteraciones:
+
+$ W_{t+1} = W_t + \Delta W_t
+$
+
+Por método de \textit{steepest descent:}
+$\Delta W_t= -\eta \dfrac{dE}{dW}
+$
+
+Solución
+\\
+
+$$
+\dfrac{dE}{dW_i} = -2  \sum_{k=1}^{K}
+(d_k - z_k) (\dfrac{-dZ_k}{dw_i})
+$$
+
+Obsérvese que
+
+$$\dfrac{-dz_k}{dw_i} = \dfrac{df(u)}{dW_i} = \dfrac{df(u)}{du} \dfrac{du}{dw_i} = f'(u) \dfrac{du}{dw_i} = f'(u) x_i
+$$
+
+Por lo que
+
+$$
+\dfrac{dE}{dW_i} = 2 \sum_{k=1}^{K} (d_k - z_k) f'(u) x_i
+$$
+
+Se denota $\delta_k = [d_k - x_k] f'(u_k)$ y entonces
+
+\begin{scaja}
+	$$ w_i(t + 1) = w_i(t) + \eta \sum_{i=1}^{K} \delta_k x_i (k) $$
+\end{scaja}
+
+En particular si $f(u)$ es el sigmoide, entonces
+
+$\delta_k=[d_k - z_k] \, z_k \,  (1-z_k)\, \alpha := \dfrac{\partial E}{\partial u}
+$
+
+\begin{scaja}
+	$$ \dfrac{\partial E}{\partial u} = -2 \sum_{i=1}^{K} [d_k - z_k] \dfrac{dZ_k}{du} $$ y ademas $$\dfrac{dz_k}{du}= \dfrac{f(u)[1 - f(u)]}{T}
+	$$.   \\  Por lo tanto, 
+	$$
+	\dfrac{\partial E}{\partial u} = -2 \sum_{i=1}^{K} [d_k - z_k] f(u) [1 - f(u)] = \dfrac{-2}{T} -2 \sum_{i=1}^{K} [d_k - z_k] \, z_k \, [1-z_k]. 
+	$$
+\begin{center}
+	QED
+\end{center}	
+\end{scaja}
+
+El proceso se debe hacer hasta que $E\textless \epsilon$
+
+
+\section{Cómo extender para un perceptrón multicapas}
+
+Se tienen:
+
+K muestras de entrenamiento
+L capas
+
+$W_{ij}^L$ es el peso de la neurona $i$ a la neurona $j$ en la capa L y en la iteración $t$.
+
+\textit{Propagación de error:}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img78.png}
+	\label{figura78}
+\end{figure}
+
+El objetivo es (de nuevo) encontrar $w_ij$ de cada capa que minimicen el error cuadrático medio.
+
+%$$ \dfrac{dE}{dw_ij^L} = -2 \sum_{i=1}^{K} \dfrac{dE}{du_i^L (k)} \dfrac{du_i^L(k)}{dw_ij^} = -2 \sum_{k=1}^{K} \delta_i^L (k) \dfrac{du_i^L(k)}{dw_ij^L}$$
+
+Pero dado que
+
+$
+\dfrac{du_i^L (k)}{dw_{ij}^L} = \dfrac{d}{dw_{ij}^L}  \sum_{m=1}^{M} \hspace{0.2cm} w_{im}^L \hspace{0.2cm} z_{m}^{L-1} (k) 
+$
+
+%avances hasta hoy 17 
