@@ -657,12 +657,11 @@ $P = \{(-1,2),(1,4),(3,2),(1,0)\}$
 	mundo.
 \end{scaja}
 
-
 \textbf{Verificación de si un punto está dentro o fuera de un polígono}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/img70.png}
+	\includegraphics[width=0.3\textwidth]{images/img70.png}
 	\label{figura70}
 \end{figure}
 	\break
@@ -687,7 +686,7 @@ Puntos que cumplen esta ecuación, están en la línea.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/img71.png}
+	\includegraphics[width=0.3\textwidth]{images/img71.png}
 	\label{figura71}
 \end{figure}
 \break
@@ -949,3 +948,215 @@ $
 $
 
 %avances hasta hoy 17 
+
+Se puede reescribir la parcial como:
+
+$$\dfrac{dE}{dw_{ij}^L} = -2 \sum_{k=1}^{K}  \delta_{i}^L (k) z_{j}^{L-1}(k)$$
+	
+Se observa que el error $\delta_i^L$ en esta capa depende del error en la capa anterior, por lo que se necesita utilizar una derivación tipo Bellman para tener:
+
+$$ \delta_{i}^L (k) = \dfrac{\partial E}{\partial u_{i}^L (k)} $$
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/img79.png}
+	\label{figura79}
+\end{figure}
+
+Obsérvese que tiene la siguiente recursión:
+
+
+\begin{equation*}
+	\begin{aligned}
+		 \delta_i^L (k) & = \, \dfrac{\partial E}{\partial u_{i}^L }(k) = \sum_{m=1}^{M} \dfrac{dE}{du_m^{L+1}} \dfrac{du_m^{L+1} (k)}{\partial u_i^L (k)}  \\
+		& = \,\sum_{m=1}^{M} \delta_m^{L+1} (k) \left[ \dfrac{d}{\partial u_i^L (k)} \dfrac{j=1}{J} w_{mj}^L f (u_j^L (k)) \right] \\
+		& = \, f'(u_i^L(k)) \sum_{m=1}^{M} \delta_m^{L+1} (k) w_{mj}^L 
+	\end{aligned}
+\end{equation*}
+
+Esto se conoce como \textit{backward propagation}.
+
+La fórmula de actualización será entonces:
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img79_f.png}
+	\label{figura79_f}
+\end{figure}
+
+La $\eta$ da la velocidad de convergencia. Sin embargo, si es muy grande, se puede dar la situación que se oscile
+demasiadas veces antes de llegar al mínimo.
+El error aleatorio se suma para encontrar el mínimo global.
+
+\textbf{¿Cómo se usa esto para los robots?}
+
+En Carnegie-Mellon University, se realizó un experimento en el cual un robot pudo manejar 90\% autónomamente en una autopista larga de Estados Unidos.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img80.png}
+	\label{figura80}
+\end{figure}
+
+
+\section{Aprendizaje}
+
+El aprendizaje en un robot puede ser varias cosas:
+
+1. Aprender “audacia”: esto depende de las constantes (afinación de constantes)
+Para campos potenciales: $\mu, \delta, d_1, d_0, \eta $.
+
+2. Aprender nuevos comportamientos
+
+a) Crear nuevos algoritmos de máquinas de estado.
+
+b) Modificación de las máquinas de estado \\
+
+Hay dos cosas: una, lo que aprendemos, y otro, el conocimiento que se obtiene a través de la evolución. Por
+ejemplo, un bebé sabe cómo evitar un obstáculo, no tiene que aprender. \\
+
+
+
+\textbf{\textit{Adquisición de Comportamientos Básicos (evolución)}}
+
+ALGORITMOS GENÉTICOS
+Los algoritmos genéticos nos permitirán utilizar el concepto de evolución para:
+- Afinación de constantes
+- Generación de algoritmos de máquina de estado. \\
+
+
+\textbf{\textit{Adquisición de Conocimiento Nuevo a partir de Comportamientos Básicos (heredados)}}
+
+REDES NEURONALES
+Aprendizaje por medio de ejemplos (tú le enseñas qué debe de hacer en determinadas circunstancias).
+
+
+\textbf{¿Qué es un algoritmo genético?}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img82.png}
+	\label{figura82}
+\end{figure}
+
+Las operaciones básicas sirven para evaluar a los individuos, es decir se genera una medida para evaluar a
+cada secuencia de bits.
+
+\textbf{Ejemplo}
+
+%imagen tabla 
+
+Ahora suponer que se cruza el individuo 1 con el 2 y tiene dos descendientes:
+
+%imagen  tabla
+
+Para hacerlo “realista” se tienen que tomar partecitas (bloques de bits) del mismo lugar (por ejemplo del
+segundo bloque).
+
+Mutación:
+
+%imagen tabla 
+
+\textbf{\underline{1. Afinación de Constantes en Campos Potenciales}}
+
+Se tiene un \textbf{cromosoma} que codifica las constantes de un robot que navega usando campos potenciales.
+
+%imagen tabla
+
+Por ejemplo si $\mu = 3.5$ y se quiere tener cuatro bits para la parte entera y cuatro para la decimal:
+
+$0011 1000$
+Pues es $(0)2^3 + (0)2^2 + (1)2^0 + (1)2^{-1}$
+
+(verificar que esto es cierto)
+
+Si se tienen n individuos y se evalúan en un medio ambiente, la función podría ser:
+
+$$ f(ind_i) = \dfrac{k_1}{d(x_*,f_f)} + \dfrac{k_2}{pasos} + ... + k_n choques $$
+
+\underline{En cada generación se cambia el origen y el destino.}
+
+En la última generación ya se tienen las constantes adecuadas. \\
+
+
+\textbf{\underline{2. Generación de algoritmos de máquinas de estado}}
+
+Cromosoma que codifica la máquina de estados.
+
+%imagen 
+
+Cada estado, a su vez, es un conjunto de variables de salida y decisiones (condicionales – “if”s) con las
+variables de entradas.
+
+%imagen
+
+Por ejemplo, el estado 1 se codificaría de la siguiente manera:
+
+%imagen
+
+...sigue...
+
+%imagen 
+
+\begin{ejemplo}
+Codificar el estado (1) en: \\
+$(1) Var5 = 7 \rightarrow (2)$
+\end{ejemplo}
+
+La solución es el binario de:
+%imagen 
+
+Es decir: 
+%imagen 
+
+
+\textbf{Ojo}: necesito una máquina que realmente evalúe este cromosoma y lo ejecute como una máquina de estados.
+
+\begin{ejemplo}
+	Codificar la máquina: \\
+	$ (1) var1 = 3, var4 = 8 \rightarrow 10 < S3 < 25 ? (2) | (18)$
+\end{ejemplo}
+
+Solución: el binario de:
+
+%imagen 
+
+\begin{ejemplo}
+Codificar lo siguiente:
+\end{ejemplo}
+
+%imagen 
+
+\begin{nota}
+LO IMPORTANTE ES QUE EL CROMOSOMA SE PUEDA EJECUTAR. Por ejemplo, si hay
+condicionales de ambos lados no se puede con esta estructura.
+\end{nota}
+
+\begin{nota}
+	Al hacer mutaciones o cruzamientos, hay que tener cuidado. Por ejemplo si se cruzan dos individuos
+	de dos estados, y me da uno de un estado, habría que cortar el hijo para que la información posterior nada
+	más tenga un estado. Igual si cambia a tres, añadir un estado. O cruzar condicionalmente... por ejemplo si
+	cruzo el número de estados, podría tener que cruzar también la información de los estados etcétera.
+\end{nota}
+
+\begin{ejemplo}
+	Codificar 
+	\begin{equation}
+	\begin{aligned}
+		(1) M1 & = 0\ldotp 5; M2 = 0\ldotp3 \rightarrow 1 \ldotp 0 < S3 < 1\ldotp3 ? \\
+		& T: (2) M1 = 0\ldotp1, M2 = 0\ldotp4  3\ldotp1 < S2 < 4\ldotp1 \\
+		&\hspace{0.5cm} T: (2) \\
+		&\hspace{0.5cm} F: 2\ldotp3 < S5 < 4 ? \\
+		&\hspace{1cm}T: (3) M1 = 0\ldotp7, M2 = 0\ldotp7 \rightarrow 6 < S2 < 7\ldotp0 ? \\
+		& \hspace{1.5cm} T: (3) \\ 
+		& \hspace{1.5cm}F: 2\ldotp1 < S3 < 4\ldotp0 ? \\ 
+		& \hspace{2cm}T: (3) \\
+		& \hspace{2cm}F: (1) \\
+		& \hspace{1cm}F: (2) \\ 
+		& F: 3\ldotp1 < S1 < 4\ldotp7 ? \\
+		& \hspace{0.5cm} T: (3) \\ 
+		& \hspace{0.5cm}F: 1\ldotp1 < S2 < 1\ldotp2 ? \\
+		& \hspace{1cm}T: (2) \\
+		& \hspace{1cm}F: (1) \\ 
+	\end{aligned}
+	\end{equation}
+\end{ejemplo}

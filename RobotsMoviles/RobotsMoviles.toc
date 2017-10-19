@@ -76,6 +76,7 @@
 \contentsline {section}{\numberline {3.9}Comportamientos con Redes Neuronales}{62}{section.3.9}
 \contentsline {section}{\numberline {3.10}Topolog\IeC {\'\i }a de Redes Neuronales}{63}{section.3.10}
 \contentsline {section}{\numberline {3.11}Modelo del Perceptr\IeC {\'o}n}{64}{section.3.11}
-\contentsline {section}{\numberline {3.12}Perceptr\IeC {\'o}n multicapas}{65}{section.3.12}
-\contentsline {section}{\numberline {3.13}C\IeC {\'o}mo extender para un perceptr\IeC {\'o}n multicapas}{67}{section.3.13}
+\contentsline {section}{\numberline {3.12}Perceptr\IeC {\'o}n multicapas}{64}{section.3.12}
+\contentsline {section}{\numberline {3.13}C\IeC {\'o}mo extender para un perceptr\IeC {\'o}n multicapas}{66}{section.3.13}
+\contentsline {section}{\numberline {3.14}Aprendizaje}{68}{section.3.14}
 \contentsfinish 
