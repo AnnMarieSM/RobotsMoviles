@@ -1160,3 +1160,593 @@ condicionales de ambos lados no se puede con esta estructura.
 	\end{aligned}
 	\end{equation}
 \end{ejemplo}
+
+
+\section{\underline{Utilización de algoritmos genéticos para organizar los comportamientos (arbitraje)}}
+
+%imagen 
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/img84.png}
+%	\label{figura84}
+%\end{figure}
+
+Recuérdese que
+
+$$c_f = \sum_{i=1}^{N} g_i \textbf{b}_i
+ $$
+
+donde $g_i$ son las constantes de ganancia y $\textbf{b}_i$ son los vectores de movimiento por los diferentes
+comportamientos.
+
+Además se tiene una \underline{función de desempeño global} que indica si el robot cumplió el objetivo.
+
+\begin{itemize}
+	\item[\textbullet]Una forma es encontrar las constantes g i con algoritmos genéticos, basándose en la función de
+	desempeño global.
+	\item[\textbullet]Otra forma de organizar es poniendo prioridades.
+\end{itemize}
+
+\subsection{Método de Utilidad Múltiple (Utility Manifold)}
+Se quiere que el árbitro decida cuál de los comportamientos se debe activar.
+Todos los comportamientos dan salidas siempre.
+Cada comportamiento dirá su aplicabilidad, dependiendo de:
+
+\begin{itemize}
+		\item[\textbullet]los sensores internos
+		\item[\textbullet]los sensores externos
+\end{itemize}
+
+Esto es un valor en (0,1)
+
+1. Función de activación del comportamiento
+
+$f_{H_i} (S_I, S_E , V)$
+
+donde 
+
+$S_I$ son los sensores internos (batería, odómetro, etc.)
+$S_E$ son los sensores externos (sonares, infrarrojo, etc.) 
+$V$ son variables de estado $x_1 ,..., x_r$
+
+Se modela:
+
+$f_{B_i}(S_E, S_I, x) = a_{i0} + a_{i1} S_E + a_{i2} S_I + a_{i3} x_i +  a_{i4} S_E^2 + a_{i5} S_I^2 + a_{i6} x_i^2 + a_{i7} S_E S_I + a_{i8} S_I x_i + a_{i9} S_E x_i ,$ para $i=1,\ldotp \ldotp \ldotp, n$ los $n$ comportamientos
+
+Se quiere obtener $a_{ij}$ con algoritmos genéticos. 
+
+Se definen: 
+
+%	$b_{i1} + b_{i2} \textbf{e}^{-|b_{i3}|t_i}$, & .  $B_i$ está activo \\
+%	0 , & e.o.c.
+%\end{cases}
+
+Para cada comportamiento se tiene una función de activación. Se tienen diferentes individuos y, dentro
+del cromosoma, se tiene:
+
+
+%imagen 
+
+(en binario).
+
+\begin{scaja}
+	Resumen
+	Los algoritmos genéticos se utilizan para introducir a los robots los comportamientos básicos. Esto NO corre
+	en línea, es para “alambrar” los “instintos” al robot. 
+\end{scaja}
+
+\section{Planeación}
+
+¿Cómo planear la ruta de un punto a otro? 
+
+%imagen 
+
+Se quisiera encontrar camino más rápido.
+
+Supóngase que se tiene un campo potencial y un obstáculo
+¿Cómo se podría ajustar los campos potenciales?:
+
+%imagen
+
+Una idea podría ser tratar de encontrar \textit{varios} caminos por campos potenciales, dependiendo de un cierto
+ángulo de desvío $\theta$.
+
+Esto genera un árbol de opciones (caminos) que es muy costoso recorrer con \underline{fuerza bruta}. ¿Cómo recorremos
+este árbol para que sea inteligente?
+
+El objetivo es encontrar una mejor ruta para recorrerla. 
+
+\subsection{Búsqueda de la mejor ruta}
+
+El problema de búsqueda se puede formular como sigue:
+ 
+\begin{scaja}
+	Dado
+	
+	$x_0$ un punto inicial (o nodo)
+	$x_f$ un punto objetivo (o nodo)
+	un grafo con pesos (red topológica)
+	
+	se quiere encontrar una ruta óptima que llegue al punto objetivo desde el punto inicial y recorrerla.
+
+\end{scaja} 
+
+\begin{ejemplo}
+	
+\end{ejemplo}
+
+
+\textbf{Depth-first}
+
+Funciona para árboles
+
+Es necesario convertir la red en árbol. Se ponen únicamente los caminos únicos (no recursivos).
+Se ponen los pesos acumulados en cada nivel
+
+Este approach se vuelve gigantesco, por lo que es necesario hacer un approach inteligente:
+
+$\bullet$	Se va a realizar la búsqueda recorriendo el árbol por preorden hasta que sea nulo (en cuyo caso se
+saca de la lista y se mete otro hijo del padre) o sea el objetivo.
+
+S \\
+A | S \\
+B | A | S \\
+C | B | A | S \\
+E | B | A | S \\
+D | E | B | A | S \\
+F | E | B | A | S \\
+G | F | E | B | A | S \\ 
+
+Aquí ya se encontró el destino por lo que se encontró un camino de nodos. Ésta es la forma de encontrar un
+camino.
+
+La aplicación es:
+
+\begin{enumerate}[1.]
+	\item El planeador encuentra los nodos del grafo que hay que visitar	
+	\item Cada uno se convierte en un punto de atracción sucesivo en el algoritmo de campos potenciales	
+\end{enumerate}
+
+
+
+\textbf{Hill Climbing}
+
+Tiene una función heurística.
+Generalmente la función del costo (o peso) al nodo más la distancia remanente al destino
+
+$f(d(q_j, q_F), w_{ij})$
+
+Es el costo de pasar de un nodo a otro más (por ejemplo) la distancia euclideana en R 3 del punto físico
+asociado al nodo y el punto físico asociado al destino.
+
+\textbf{Breadth-Search}
+
+Se va guardando en una lista ligada
+En cada iteración se van cargando los hijos de cada uno de los nodos de cada nivel.
+
+\textbf{Planeación usando espacio-estado}
+
+Reglas nombre {
+	Precondiciones
+	$\rightarrow$
+	Operadores
+	Lista de Borrado
+	Lista Aditiva
+}
+
+
+\textit{Por ejemplo: Ponerse los zapatos:}
+
+
+Regla Colocar$\_$Calcetin$\_$Derecho
+Precondiciones
+
+Colocar Zapato Derecho (comando) \\
+
+Pie derecho está desnudo
+
+Calcetín está disponible
+
+$\rightarrow$
+
+Operador
+
+Poner$\_$Calcetin$\_$PieDerecho
+
+Lista de Borrado
+
+Calcetín está disponible
+
+Pie derecho está desnudo
+
+
+Regla Colocar$\_$Zapato$\_$Derecho \{
+	Precondiciones
+	
+	No hay pie derecho desnudo
+	
+	Colocar Zapato Derecho (comando)
+	
+	Zapato derecho disponible
+	
+	$\rightarrow$
+	
+	Operador
+	
+	Poner zapato derecho
+	
+	Lista de borrado
+	
+	Zapato derecho disponible
+	
+	Colocar zapato derecho
+\}
+
+
+
+Se pueden organizar jerárquicamente:
+
+Inicio
+
+a) Colocar$\_$Calcetin$\_$derecho \\
+a. Colocar$\_$zapato$\_$derecho \\
+i. Colocar$\_$calcetin$\_$izquierdo \\
+ii. Colocar$\_$zapato$\_$izquierdo \\
+
+b. Colocar$\_$calcetin$\_$izquierdo \\
+i. Colocar$\_$zapato$\_$izquierdo \\
+1. Colocar$\_$zapato$\_$derecho \\
+ii. Colocar zapato derecho \\
+1. Colocar zapato$\_$izquierdo \\
+
+b) Colocar$\_$Calcetin$\_$izquierdo\\
+a. Colocar zapato izquierdo\\
+i. Colocar calcetín derecho\\
+ii. Colocar zapato derecho\\
+
+b. Colocar calcetín derecho\\
+i. Colocar zapato derecho\\
+1. Colocar zapato izquierdo\\
+ii. Colocar zapato izquierdo\\
+
+1. Colocar zapato derecho\\
+
+
+¿Por cuál camino irnos?
+Debemos ponerle pesos y después trabajarlo con un algoritmo de búsqueda.
+
+
+\begin{ejemplo}
+	Bloques
+	
+	B	A	C	E	D
+	Se quiere tener una representación espacio-estado con los operadores.
+	
+	B	D	C 	E	A
+	
+	
+\end{ejemplo}
+
+Operadores:
+
+
+Goto(x,y,z) \hspace{0.5cm} Ir a (x,y,z) \\
+Pickup(w) \hspace{0.5cm}Recoger w de la mesa \\
+Putdown(w) \hspace{0.5cm}Soltar w en la mesa \\
+Stack(u,v) \hspace{0.5cm}Poner el u encima del v \\
+Unstack(u,v) \hspace{0.5cm} Quita el bloque u del v (y se lo queda en la mano)
+
+
+La representación del estado del mundo:
+
+
+Location(w,x,y,z) \hspace{0.5cm}  el bloque w está en las  coordenadas x,y,z \\
+On(x,y) \hspace{0.5cm} el bloque x está encima de y \\
+Clear(x) \hspace{0.5cm} no hay algo encima de x \\
+Gripping(x) \hspace{0.5cm} el brazo del robot tiene el bloque x \\ (\textit{gripping(void)} es que no tiene algo) \\
+OnTable(w) \hspace{0.5cm} el bloque w está en la mesa
+
+
+A partir de esto se deduce que
+
+$$\forall x (CLEAR(x)) \Rightarrow \neg \exists y (on(y,x)))$$
+$$\forall x (GRIPPING (void) \Leftrightarrow \neg GRIPPING (x)$$
+$$\forall y \forall x (ONTABLE (y) \Rightarrow \neg ON (y , x ))$$
+
+
+Estado 1
+
+	OnTable(A)\\
+	OnTable(C)\\
+	OnTable(D)\\
+	On(B,A)\\
+	On(E,D)\\
+	Gripping(void) \\
+	Clear(B) \\
+	Clear(C) \\ 
+	Clear(E)\\ 
+
+
+Regla Pickup(x) \{
+	Precondiciones \\
+	Clear(x) \\
+	OnTable(x) \\
+	Gripping(void) \\
+$\rightarrow$
+	Lista de adición \\
+	Gripping(x) \\ 
+	Lista de borrado \\
+	OnTable(x) \\
+	Gripping(void) \\
+\}
+
+
+Observación: esto genera una \textit{notación de predicados}
+ 
+$$ \forall x (PICKUP (x) \Rightarrow GRIPPING (x)) \leftarrow (GRIPPING (void) \textasciicircum CLEAR (x) \textasciicircum ONTABLE (x))
+$$
+
+Regla PutDown(x) \{ \\
+	Precondiciones \\
+	Gripping(x) \\
+	$\rightarrow$
+	Lista Adición \\
+	Gripping(void) \\
+	OnTable(x) \\
+	Lista de Borrado \\
+	Gripping(x) \\
+\}
+
+Regla Stack(x,y) \{ \\
+	Precondiciones \\
+	Gripping(x) \\
+	Clear(y) \\
+	$\rightarrow$ 
+	Lista de adición \\
+	Gripping(void) \\
+	On(x,y) \\
+	Lista de Borrado \\
+	Gripping(x) \\
+	Clear(y) \\
+\}
+
+Árbol de Estados
+
+B A
+C E
+D
+
+
+1) B
+A E
+C D
+
+2)
+
+
+A E
+C D
+
+
+Etcétera (todas las posibilidades)
+
+\underline{Tercera evaluación}
+
+Comportamiento de potenciales
+Comportamiento de máquinas de estado
+Árbitro
+
+
+(con variables de aplicabilidad entre 0 y 1)
+
+
+
+\textbf{Máquina de Inferencia}
+
+
+Hechos + Reglas $\rightarrow$ Máquinas de Inferencia $\rightarrow$ Agenda
+Los hechos activan reglas. Las reglas pueden generar otros hechos que, a su vez, pueden activar nuevas
+reglas.
+
+Por ejemplo esto puede evitar que en 100000 if’s anidados se tenga que ejecutar el último.
+En lugar de que las reglas busquen los hechos que los activan, es al revés (puesto que los hechos
+generalmente no cambian).
+
+
+Las reglas producen hechos NUEVOS.
+
+El sistema \textbf{CLIPS} es un lenguaje de programación orientado a plantillas que permite definir sistemas
+expertos. Tiene una máquina de inferencia con encadenamiento hacia delante para eficiencia.
+Permite definir hechos, reglas, etc.
+
+
+\section{Lenguaje Natural}
+
+La idea es hablarle a un robot en lenguaje cotidiano y que nos “entienda”. Entender es hacer un análisis
+semántico para obtener un significado y transformarlo en una acci
+ón.
+
+Lo que yo le dije, que lo haga.
+
+La definición operacional de \textbf{entender} es que el sistema realice las acciones que el usuario le pide.
+Entender algo es transformar lo que se pide en una \textbf{representación}, la cual ha sido escogida para que
+corresponda a un conjunto de acciones disponibles que pueden ser ejecutadas.
+
+
+\begin{enumerate}[1.]
+	\item Señal de entrada \\
+	Puede ser voz, imagen o combinación de ambas (o cualquier otra forma de entrada, por teclado).
+	Voz: por medio de un micrófono que transforma una señal acústica en una señal eléctrica.
+	Es necesario aplicar técnicas de procesamiento digital de señales para obtener las características de
+	esa señal acústica.
+	Existen algoritmos (como el de cuantización vectorial y sus variantes) para procesar e identificar las
+	palabras.
+	
+	\item Las palabras de entrada son revisadas para ver si ellas están agrupadas de acuerdo con reglas
+	gramaticales, significando que ellas forman oraciones gramaticalmente correctas.
+	
+	\item El significado de cada palabra y de la oración es asignado.
+	Este paso es el más difícil de los tres.
+	
+\end{enumerate}
+
+
+
+\textit{Dependencia Conceptual}
+
+\underline{Primitivas Conceptuales}
+
+La representación de varias acciones es la misma.
+Por ejemplo: “Juan dio el libro a Pedro”, “Juan prestó el libro a Pedro”, “Juan regaló el libro a Pedro”,
+significan cosas diferentes, pero la acción de transferir el libro de una persona a otra es la misma.
+
+Cada primitiva tiene:
+
+\begin{enumerate}[a)]
+	\item Un actor (realiza el acto)
+	\item Un acto (realizado por el actor y hecho hacia un objeto)
+	\item Un objeto (ente sobre el que es realizada la acción)
+	\item Una dirección (en la cual el acto es realizado)
+	\item Un estado (en el cual el objeto se encuentra)
+\end{enumerate}
+
+Las primitivas son:
+
+\textbf{PTRANS} \hspace{0.5cm}
+Es la transferencia física de un objeto. \\
+
+\hspace{1cm}
+(PTRANS (Actor NIL) (Objeto NIL) (FROM NIL) (TO NIL) )
+
+Por ejemplo
+
+“Robot, lleva las flores al patio”
+Se representaría como:
+
+(PTRANS (Actor Robot) (Objeto flores) (From Posicion$\_$flores) (To Patio))
+“Robot, ve a la cocina”
+(PTRANS (Actor Robot) (Objeto Robot) (From Posicion$\_$robot) (To Cocina))
+
+\textbf{Notar que el verbo indica qué primitiva utilizar}
+
+MTRANS es la transferencia de información mental.
+Roberto le dijo a Susana que era bonita
+(MTRANS (ACTOR Roberto) (OBJETO “que Susana es bonita”) (FROM cerebro$\_$roberto) (TO
+cerebro$\_$susana)
+INGEST es la ingestión de un objeto por un animal, actor o ente
+Juan toma leche
+(INGEST (ACTOR Juan) (OBJECT Leche) (FROM NIL) (TO Boca$\_$Juan))
+PROPEL es la aplicación de fuerza física a un objeto
+María mató a una araña aventándole un zapato
+(PROPEL (ACTOR María) (OBJECT Zapato) (FROM Brazo$\_$Maria) (TO Araña))
+Observar: para matar a la araña con el PROPEL, primero tuvo que mover el brazo.
+MOVE es el movimiento de una parte del cuerpo
+
+
+
+Voz $\rightarrow$ Lenguaje natural de entrada y salida $\rightarrow$ PRIMITIVAS (Dependencia Conceptual) $\rightarrow$ Planeador de
+acciones $\rightarrow$ Planeador de Rutas $\rightarrow$ Ambiente Virtual / Realidad
+
+%imagen
+
+
+Proyecto Final
+
+1) Red topológica con nodos
+2) Encontrar y ejecutar la mejor ruta
+3) 6 cubos en un array de 2x3
+
+A F | \\
+B E | \\
+C D | \\
+Cuarto 1  cuarto 2 
+
+Poder ejecutar sentencias tipo “lleva A al cuarto 2”
+(por ejemplo el A no se puede agarrar, hay que quitar C y B y ponerlos en otro lado)
+
+Con CLIPS
+Podemos poner nodos topológicos.
+
+
+\section{Creación de Mapas}
+
+La idea básica es crear un modelo del medio ambiente (una red topológica), basándose en la información en
+los sensores.
+Detectar con los sensores los puntos que delimitan el “espacio libre” (es decir, por donde puede navegar el
+robot).
+
+\subsection{Diagramas de Voronoi}
+
+La idea es encontrar el diagrama de Voronoi de los puntos y entones el robot puede caminar sobre las líneas.
+
+Considérese un punto $(x,y) \in C$ (el espacio libre). Los puntos bases de $(x,y)$ son los puntos $(x',y')$ más
+cercanos en el espacio ocupado $\bar{C}$ . El diagrama de Voronoi es el conjunto de puntos en el espacio libre que
+tiene cuando menos dos puntos bases diferentes a la misma distancia.
+
+
+\textbf{Puntos Críticos}
+
+Los puntos críticos $(x,y)$ son puntos en el diagrama de Voronoi tales que minimizan un margen local.
+Existe $\varepsilon > 0$  tal que el margen de todos los puntos en la bola abierta de $(x,y)$ no es menor.
+
+
+\textbf{Líneas críticas}
+
+Son obtenidas conectando cada punto crítico con sus puntos base. Las líneas críticas particionan el espacio
+libre en regiones disjuntas.
+
+\subsection{Cuantización Vectorial}
+
+Hacer clustering sobre el espacio libre.
+
+\textbf{Clustering:}
+
+Considérense $m$ vectores, $v_i = (x_i , y_i).$
+
+\begin{enumerate}[1.]
+	\item Encontrar un centroide $c_1 = \dfrac{1}{m} \sum_{j=1}^{m} v_j$
+	
+	\item Generar dos centroides nuevos a partir del centroide $C_i$ anterior
+	$$c_{i+1} = c_i + \varepsilon_1$$
+	$$C_{i+2} = C_i \varepsilon_2$$
+	Donde $\varepsilon_k = 1 + \delta_k$, con $\delta_k$ pequeño en magnitud absoluta
+	\item Agrupar los vectores en dos grupos de acuerdo al centroide más cercano.
+	
+	$$d_T = d(v_j , c_{i+r})    r=1,2$$
+	
+	Asignar a los grupos:
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.9\textwidth]{images/img90.png}
+		\label{figura90}
+	\end{figure}
+	
+\end{enumerate}
+
+
+\textbf{Localización del Robot}
+
+
+Si el odómetro fuera perfecto, se puede saber siempre en dónde se encuentra el robot. Sin embargo, en la
+realidad no son exactos y no se sabe.
+Se puede utilizar la visión para localizar puntos de referencia predefinidos.
+Para hacer esto, se necesita que el sistema de visión sea invariante al tamaño y a transformaciones
+(rotaciones).
+Ya sea con un sistema de visión o de localización, se puede hacer triangulación.
+Si se tienen varias marcas, suponiendo que se pueden encontrar las distancias a las marcas, se puede trazar un
+círculo de radio la distancia.
+Se establece entonces:
+
+$$(z-z_i)^2 + (z-z_i)^2 + (z-z_i)^2 =d_{i}^2 \hspace{0.5cm} ,   \forall_i$$
+
+El sistema de ecuaciones me determina $(x , y , z)$, es decir, la posición del robot.
+
+Esto podría funcionar pero los sensores tienen errores y por lo tanto nunca se intersecan los círculos.
+Por lo tanto, la localización del robot es probabilística
+
+4. Si $D_{g}^t - D_{g}^{t-r} > \epsilon $ entonces recalcular los centroides
+
+%$$c_{i+r} = \dfrac{1}{m_{G}_{i+r}} = \sum_{j=1}^{m_{G}_{i+r}} v_j , r= 1,2 $$
+%%
+
+
