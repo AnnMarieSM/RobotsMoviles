@@ -275,8 +275,15 @@ $$
 \end{ejemplo}
 
 Se tiene: 
+
+%EJEMPLO
 $$
-F_{atr}(q_0) = \varepsilon_1 (q_0-q_{dest}) = (-4,-3)
+\begin{array}{rcl}
+F_{atr}(q_0) & = & \varepsilon_1 (q_0-q_{dest}) \\
+             & = &  (-4,-3)
+             
+             
+\end{array}
 $$
 
 $$
@@ -664,7 +671,7 @@ $P = \{(-1,2),(1,4),(3,2),(1,0)\}$
 	\includegraphics[width=0.3\textwidth]{images/img70.png}
 	\label{figura70}
 \end{figure}
-	\break
+	%\break
 
 Ecuación paramétrica de la recta
 $
@@ -672,6 +679,7 @@ x = x_0 + (x_1 - x_0)t \\
 y = y_0 + (y_1 - y_0)t \\
 t \in (0,1)
 $
+
 Los puntos de la ecuación general
 
 $
@@ -684,12 +692,13 @@ Puntos que cumplen esta ecuación, están en la línea.
 \textbf{Problema de los campos potenciales}
 \\ Por ejemplo un mínimo local
 
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.3\textwidth]{images/img71.png}
 	\label{figura71}
 \end{figure}
-\break
+%\break
 
 
 El vector resultante es 0 y el robot se queda inmóvil o en un ciclo.
@@ -733,7 +742,7 @@ Puedo hacer máquinas de estado con redes neuronales.
 
 Por cada neurona se tiene
 
-$u = \sum_{i=1}^{n} w_i y_i + \theta $
+$u = \displaystyle \sum_{i=1}^{n} w_i\, y_i + \theta $
 
 Entradas: $ y_j \rightarrow $  vienen de otras neuronas
 Pesos: $w_j$
@@ -745,7 +754,7 @@ $$
 a=f(u)
 $$
 
-Generalmente $ f(u) = \dfrac{1}{1 + e^(\dfrac{-u}{T})}$ (un sigmoide)
+Generalmente $ f(u) = \dfrac{1}{1 + e^\frac{-u}{T}}$ (un sigmoide)
 
 $T$ es una constante de temperatura. 
 
@@ -1749,4 +1758,6 @@ Por lo tanto, la localización del robot es probabilística
 %$$c_{i+r} = \dfrac{1}{m_{G}_{i+r}} = \sum_{j=1}^{m_{G}_{i+r}} v_j , r= 1,2 $$
 %%
 
+
+En donde 
 
