@@ -1006,6 +1006,18 @@ En Carnegie-Mellon University, se realizó un experimento en el cual un robot pu
 	\label{figura80}
 \end{figure}
 
+El entrenamiento se haría primero manejando un humano y la red registrando qué se hizo y la foto
+correspondiente.
+Otra forma: máquina de estado con redes neuronales.
+
+\textbf{Máquina de Estados con Redes Neuronales}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img81.png}
+	\label{figura81}
+\end{figure}
+
 
 \section{Aprendizaje}
 
@@ -1049,27 +1061,55 @@ Aprendizaje por medio de ejemplos (tú le enseñas qué debe de hacer en determi
 
 Las operaciones básicas sirven para evaluar a los individuos, es decir se genera una medida para evaluar a
 cada secuencia de bits.
+%NOTA no se puede poner imagen :(
+%\begin{ejemplo}
+% 
+%
+%	\begin{figure}
+% 
+% 	\includegraphics[width=0.9\textwidth]{images/img86.png}
+% 	\label{figura86}
+% 	\end{figure}
+% 		
+%\end{ejemplo}
 
-\textbf{Ejemplo}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{images/img83.png}
+\label{figura83}
+\end{figure}
+\break 
 
-%imagen tabla 
 
 Ahora suponer que se cruza el individuo 1 con el 2 y tiene dos descendientes:
 
-%imagen  tabla
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img84.png}
+	\label{figura84}
+\end{figure}
 
 Para hacerlo “realista” se tienen que tomar partecitas (bloques de bits) del mismo lugar (por ejemplo del
 segundo bloque).
 
 Mutación:
 
-%imagen tabla 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img85.png}
+	\label{figura85}
+\end{figure}
+
 
 \textbf{\underline{1. Afinación de Constantes en Campos Potenciales}}
 
 Se tiene un \textbf{cromosoma} que codifica las constantes de un robot que navega usando campos potenciales.
 
-%imagen tabla
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img86.png}
+	\label{figura86}
+\end{figure}
 
 Por ejemplo si $\mu = 3.5$ y se quiere tener cuatro bits para la parte entera y cuatro para la decimal:
 
@@ -1091,20 +1131,32 @@ En la última generación ya se tienen las constantes adecuadas. \\
 
 Cromosoma que codifica la máquina de estados.
 
-%imagen 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img87.png}
+	\label{figura87}
+\end{figure}
 
 Cada estado, a su vez, es un conjunto de variables de salida y decisiones (condicionales – “if”s) con las
 variables de entradas.
 
-%imagen
+
 
 Por ejemplo, el estado 1 se codificaría de la siguiente manera:
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img88.png}
+	\label{figura88}
+\end{figure}
 
 ...sigue...
 
-%imagen 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img89.png}
+	\label{figura89}
+\end{figure}
 
 \begin{ejemplo}
 Codificar el estado (1) en: \\
@@ -1112,11 +1164,20 @@ $(1) Var5 = 7 \rightarrow (2)$
 \end{ejemplo}
 
 La solución es el binario de:
-%imagen 
+
+\begin{figure}[h!]
+
+	\includegraphics[width=0.3\textwidth]{images/img90.png}
+	\label{figura90}
+\end{figure}
 
 Es decir: 
-%imagen 
 
+\begin{figure}[h!]
+	
+	\includegraphics[width=0.3\textwidth]{images/img91.png}
+	\label{figura91}
+\end{figure}
 
 \textbf{Ojo}: necesito una máquina que realmente evalúe este cromosoma y lo ejecute como una máquina de estados.
 
@@ -1127,13 +1188,26 @@ Es decir:
 
 Solución: el binario de:
 
-%imagen 
+\begin{figure}[h!]
+	
+	\includegraphics[width=0.9\textwidth]{images/img92.png}
+	\label{figura92}
+\end{figure}
 
 \begin{ejemplo}
 Codificar lo siguiente:
 \end{ejemplo}
 
-%imagen 
+
+\begin{figure}[h!]
+	
+	\includegraphics[width=0.8\textwidth]{images/img93.png}
+	\label{figura93}
+\end{figure}
+
+ 
+
+
 
 \begin{nota}
 LO IMPORTANTE ES QUE EL CROMOSOMA SE PUEDA EJECUTAR. Por ejemplo, si hay
@@ -1146,6 +1220,7 @@ condicionales de ambos lados no se puede con esta estructura.
 	más tenga un estado. Igual si cambia a tres, añadir un estado. O cruzar condicionalmente... por ejemplo si
 	cruzo el número de estados, podría tener que cruzar también la información de los estados etcétera.
 \end{nota}
+
 
 \begin{ejemplo}
 	Codificar 
@@ -1174,11 +1249,11 @@ condicionales de ambos lados no se puede con esta estructura.
 \section{\underline{Utilización de algoritmos genéticos para organizar los comportamientos (arbitraje)}}
 
 %imagen 
-%\begin{figure}[h!]
-%	\centering
-%	\includegraphics[width=0.9\textwidth]{images/img84.png}
-%	\label{figura84}
-%\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img94.png}
+	\label{figura94}
+\end{figure}
 
 Recuérdese que
 
@@ -1226,17 +1301,22 @@ Se quiere obtener $a_{ij}$ con algoritmos genéticos.
 
 Se definen: 
 
-%	$b_{i1} + b_{i2} \textbf{e}^{-|b_{i3}|t_i}$, & .  $B_i$ está activo \\
-%	0 , & e.o.c.
-%\end{cases}
+$ x_i = \begin{cases} b_{i1} + b_{i2} \; e^{-|b_{i3}|t_i}, \hspace{0.3cm} B_i \;$ est\'a activo $ \\
+0,\hspace{0.3cm}   e.o.c.  
+\end{cases} $	
+
 
 Para cada comportamiento se tiene una función de activación. Se tienen diferentes individuos y, dentro
 del cromosoma, se tiene:
 
 
-%imagen 
 
-(en binario).
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{images/img95.png}
+\label{figura95}
+\end{figure}
+(en binario)
 
 \begin{scaja}
 	Resumen
@@ -1248,14 +1328,24 @@ del cromosoma, se tiene:
 
 ¿Cómo planear la ruta de un punto a otro? 
 
-%imagen 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/img96.png}
+	\label{figura96}
+\end{figure}
+(en binario)
 
 Se quisiera encontrar camino más rápido.
 
 Supóngase que se tiene un campo potencial y un obstáculo
 ¿Cómo se podría ajustar los campos potenciales?:
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/img97.png}
+	\label{figura97}
+\end{figure}
+
 
 Una idea podría ser tratar de encontrar \textit{varios} caminos por campos potenciales, dependiendo de un cierto
 ángulo de desvío $\theta$.
@@ -1282,8 +1372,15 @@ El problema de búsqueda se puede formular como sigue:
 
 \begin{ejemplo}
 	
+Observe la siguiente imagen 
+
 \end{ejemplo}
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/img98.png}
+	\label{figura98}
+\end{figure}
 
 \textbf{Depth-first}
 
@@ -1622,9 +1719,9 @@ Cada primitiva tiene:
 Las primitivas son:
 
 \textbf{PTRANS} \hspace{0.5cm}
-Es la transferencia física de un objeto. \\
+Es la transferencia física de un objeto. 
 
-\hspace{1cm}
+\hspace{2cm}
 (PTRANS (Actor NIL) (Objeto NIL) (FROM NIL) (TO NIL) )
 
 Por ejemplo
@@ -1656,12 +1753,23 @@ MOVE es el movimiento de una parte del cuerpo
 Voz $\rightarrow$ Lenguaje natural de entrada y salida $\rightarrow$ PRIMITIVAS (Dependencia Conceptual) $\rightarrow$ Planeador de
 acciones $\rightarrow$ Planeador de Rutas $\rightarrow$ Ambiente Virtual / Realidad
 
-%imagen
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/img99.png}
+	\label{figura99}
+\end{figure}
 
 
-Proyecto Final
 
-1) Red topológica con nodos
+\textbf{Proyecto Final}
+
+1) \begin{enumerate}
+	\item [1.] Red topológica con nodos
+	\item [2.] Encontrar y ejecutar la mejor ruta
+	\item [3.] 6 cubos en un array de 2x3
+	
+\end{enumerate}
+
 2) Encontrar y ejecutar la mejor ruta
 3) 6 cubos en un array de 2x3
 
@@ -1669,6 +1777,7 @@ A F | \\
 B E | \\
 C D | \\
 Cuarto 1  cuarto 2 
+\\
 
 Poder ejecutar sentencias tipo “lleva A al cuarto 2”
 (por ejemplo el A no se puede agarrar, hay que quitar C y B y ponerlos en otro lado)
@@ -1723,14 +1832,20 @@ Considérense $m$ vectores, $v_i = (x_i , y_i).$
 	
 	$$d_T = d(v_j , c_{i+r})    r=1,2$$
 	
-	Asignar a los grupos:
+	\begin{center}
+		Asignar a los grupos:
+	\end{center}
+	$$v_j \in G_{i+1}\Leftrightarrow d_1 < d_2$$
+	$$v_j \in G_{i+2}\Leftrightarrow d_1 \leq d_2$$
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.9\textwidth]{images/img90.png}
-		\label{figura90}
+		\includegraphics[width=0.4\textwidth]{images/img100.png}
+		\label{figura100}
 	\end{figure}
-	
+
 \end{enumerate}
+	\break
+
 
 
 \textbf{Localización del Robot}
@@ -1755,9 +1870,176 @@ Por lo tanto, la localización del robot es probabilística
 
 4. Si $D_{g}^t - D_{g}^{t-r} > \epsilon $ entonces recalcular los centroides
 
-%$$c_{i+r} = \dfrac{1}{m_{G}_{i+r}} = \sum_{j=1}^{m_{G}_{i+r}} v_j , r= 1,2 $$
-%%
+$$c_{i+r} = \dfrac{1}{m_{{G}_{i+r}}} = \sum_{j=1}^{m_{{G}_{i+r}}} v_j, \;\;  r=1,2$$
+
+donde $D_{g}^t = \displaystyle\sum_{j=1}^{t} min (d_1 (j),d_2 (j))$ y $t$ es la iteración
+
+Si es mayor, ir al punto 3.
+Si es menor:
+
+Repetir 2 hasta que se tenga el número de centroides deseado.
+
+\subsection{Cadenas de Markov y Modelos Ocultos de Cadenas de Markov}
+
+Una cadena de Markov es como una máquina de estado en la que las transiciones son probabilísticas.
+
+$$a_{ij} = P [pasar de i a j]$$
+
+Los cambios de estado están indexados al tiempo y se denominan $q_t$.
+
+Un proceso estocástico es un \textbf{proceso markoviano de primer orden} si la probabilidad de que la cadena de
+Markov se encuentre en un determinado estado j es:
+
+$$P[q_t = j \;| \; q_{t-1} = i_1, \; q_{t-2} = i_2,\ldots, q_0 = i_t] = P[q_t = j|q_{t-1} = i]$$
+
+Se tiene:
+
+$$a_{ij} \; > 0 \forall i, j$$
+$$\sum_{j=1}^{N} a_{ij} = 1 \forall i$$
+
+<falta una clase aquí>
 
 
-En donde 
+\begin{caja}
+\textbf{Problema 1}
+
+\begin{math}
+O=(O_1, O_2, \ldots , O_N)\\ 
+\lambda = (A,B,\Pi) \\
+P(O|\lambda)\\
+\end{math}
+
+
+Con lo visto anteriormente, son aproximadamente \((2T-1)N^T+N^T-1\) operaciones. Por ejemplo, con 5
+estados y \(100\) observaciones, esto es aproximadamente \(10^{72}\) operaciones. Por tanto, necesitamos obtener
+algún procedimiento más eficiente.
+
+\end{caja}
+
+\textbf{Procedimiento hacia delante}
+
+$\alpha_t (i) = P(O_1, O_2, \ldots, \; O_t, q_t = i|\lambda) $
+
+Es la probabilidad de observar la secuencia parcial $O_1, O_2, \ldots, O_t$ y el estado $i$ en el tiempo $t$.
+
+Esta probabilidad se puede encontrar de manera inductiva:
+
+
+\begin{enumerate}[1.]
+	\item Inicialización
+	
+	$\alpha_1 (i) = \Pi_i b_i (O_1), 1\leq i \leq N$
+	
+	$O_i$ es la observación al tiempo $i$. 
+	
+	Por ejemplo, se puede tener: $O_1=v_4$ que es una mesa.
+	Las probabilidades son fijas pero las observaciones están cambiando respecto al tiempo.
+	
+	\item Inducción
+	
+	$\alpha_{t+1} (j) = \left[ \displaystyle \sum_{i=1}^{N} \alpha_t (i) a_{ij}\right] b_j (O_{t+1}) \; 1 \leq t \leq T -1, \; 1\leq j \leq N $
+	
+	 La probabilidad depende de la probabilidad anterior, las probabilidades de transición y la probabilidad de
+	 la observación en el estado $j$.
+	
+	
+	\item Término
+	
+	$P(O| \lambda) = \displaystyle \sum_{i=1}^{N} \alpha_T (i) = \displaystyle \sum_{k=1}^{N} P(O_1, O_2, \ldots, \; O_t, q_t = i|\lambda)$
+	
+	Para calcular $\alpha_t (j) 1 \leq t \leq T, \; 1\leq j \leq N$ se requieren $N^2 T$ cálculos (en lugar de $2TN^T$)
+	
+	
+\end{enumerate}
+
+
+\begin{caja}
+	\textbf{Problema 2}
+	
+	
+	Encontrar la mejor secuencia de estados \( q = (q_1, q_2 , \ldots, q_T)\)dada la secuencia de observaciones \( O = (O_1, O_2, \ldots, O_T)\)
+	En términos del robot: dado lo que vio, en dónde se estuvo moviendo.
+	
+\end{caja}
+
+\textbf{Diagrama de Trellis}
+
+Diagrama de Trellis
+
+Dado una máquina de estados con transiciones:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/img101.png}
+	\label{figura101}
+\end{figure}
+
+Para cada estado hay una serie de caminos, hay que encontrar el mejor camino. Sin embargo, para cada
+tiempo, la búsqueda crece en forma exponencial (el número de caminos crece).
+
+Hay que hacerlo con el \textbf{Algoritmo de Viterbi}, que va eliminando todos los caminos menos los más
+probables.
+
+\section{Algoritmo de Viterbi}
+
+
+Sea $\delta_t (i)$la mejor ruta en el tiempo $t$ que toma en cuenta las primeras $t$ observaciones y termina en el estado
+$i$.
+
+$\delta_t (i) = \underset{q_1, \ldots, q_{t1}}{max} P[q_1 q_2 \ldots q_{t-1}, q_t = i, O_1 , O_2, \ldots, O_t | \lambda]$
+
+\begin{enumerate}
+	\item [1)] Inicialización
+	
+	$\delta_i (i) = \pi_i b_i (O_1)$ para  toda $i$
+	
+	\item[2)]Recursión
+	
+	$\delta_t (j) = \lgroup \underset{1\leq i\leq N}{max} \left [ \delta_{t-1} (i) a_{ij }\right] \rgroup b_j (O_t)$
+	
+	$ 2\leq t \leq N , 1 \leq j \leq N$
+	
+	$\Psi_t (j) = \underset{1\leq i\leq N}{arg max} \left [ \delta_{t-1 (i) a_{ij}}\right] $ (es decir, los nodos que conforman la ruta)
+	
+	\item[3)]Término
+	
+	$p^* = \underset{1\leq i\leq N}{max} \left[ \delta_T (i) \right]$
+	
+	$q_{{T}}^* = \underset{1\leq i\leq N}{arg max} \left[ \delta_T (i) \right]$
+	
+	
+	\item[4)]Ruta
+	
+	
+	La ruta se obtiene:
+	
+	$q_{t}^* = \Psi_{t+1} (q_{t+1}^*), \enspace t = T-1, \: T-2, \ldots, 1 
+	$
+	
+\end{enumerate}
+
+\begin{caja}
+	\textbf{Problema 3}
+	\\
+	\textbf{Estimación de Parámetros} 
+	\\
+	
+	
+	Se quiere encontrar $\lambda = (A,B,\pi) $ que satisfaga un cierto criterio de optimalidad. \\
+		
+	Modelo inicial $\rightarrow$ (de datos de entrenamiento) Segmentación secuencia de estados $\rightarrow$  Reestimación del
+	modelo $\rightarrow$ Convergencia del modelo? Si sí, regresar a segmentación, si no, dar parámetros del modelo. \\
+	
+	$b_j (k)$ es el número de observaciones con el símbolo $k$ en el estado $j$ dividido por el número de
+	observaciones en el estado $j$. \\
+	
+	
+	
+	$a_{ij}$ es el número de transiciones del estado $i$ al estado $j$ dividido por el número de transiciones de $i$ a cualquier
+	estado.
+	$\pi_i$ es el número de veces que se empezó en el estado $i$ dividido entre el número de veces de entrenamientos.
+\end{caja}
+
+
+
 
